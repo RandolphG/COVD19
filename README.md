@@ -18,14 +18,13 @@ $ npm i
 $ npm run electron 
 ```
 ## Features
-- COVID 19 Api : https://covid19api.com/ 
-- refreshes data every hour
-- initial downloaded data gets cached to local storage
-- custom CSS
-- electron wrapper
-- redux
-- reselect
-- framer-motion
+- 😎 COVID 19 Api : https://covid19api.com/ 
+- 😎 cached api call to local storage
+- 😎 custom CSS
+- 😎 electron
+- 😎 redux
+- 😎 reselect
+- 😎 framer-motion
 
 ### requirements ( **Note**: Api was incomplete )
 
