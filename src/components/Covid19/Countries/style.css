@@ -28,8 +28,6 @@ html {
 }
 
 .slides > button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     background: transparent;
     border: none;
@@ -62,7 +60,7 @@ html {
 
 .slideContent {
     position: relative;
-    width: 35vw;
+    width: 30vw;
     height: 40vw;
     border-radius: 7px;
     background: black;

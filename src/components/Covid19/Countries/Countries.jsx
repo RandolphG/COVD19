@@ -5,8 +5,6 @@ import s from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentSlideIndex, getFlags, getSlideIndex, isModalShown } from '../../../store';
 import { toggleModal } from '../../../store/actions';
-const image =
-  'https://singularityhub.com/wp-content/uploads/2020/06/SpaceX-offshore-launchpads-Starship.jpg';
 
 /**
  * return days for carousel
@@ -17,7 +15,6 @@ const image =
  * @constructor
  */
 const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }) => {
-  // const numberOfCountries = useSelector(getNumberOfCountries);
   const slideIndex = useSelector(getSlideIndex);
   let offset = slideIndex - currentIndex;
   const active = offset === 0 ? true : null;
@@ -31,6 +28,8 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
   const toggle = () => {
     dispatch(toggleModal(!isModalHidden));
   };
+
+  const backgroundUrl = `url(${flags[index].flag}) no-repeat center`;
 
   return (
     <div
@@ -53,9 +52,8 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
           className="slideContentInner"
           style={{
             padding: '50px',
-            background: `url(${flags[index].flag}) no-repeat center `,
+            background: `${backgroundUrl}`,
             backgroundSize: 'cover',
-            borderRadius: '25px',
           }}
         >
           <s.DateInfo onClick={toggle}>

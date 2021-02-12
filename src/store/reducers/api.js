@@ -12,7 +12,25 @@ import {
   PREV,
   INIT_DATE,
   INIT_FLAGS,
+  SET_CURRENT_MODE,
+  SET_MODE_INDEX,
+  SET_SELECTED_MACHINE_ROLE,
 } from '../actions';
+import Table from '../../components/Covid19/DisplayMode/Table';
+import Carousel from '../../components/Covid19/DisplayMode/Carousel';
+import List from '../../components/Covid19/DisplayMode/List';
+
+export const MODAL_VIEWS = {
+  CAROUSEL: {
+    name: 'CAROUSEL',
+  },
+  TABLE: {
+    name: 'TABLE',
+  },
+  LIST: {
+    name: 'LIST',
+  },
+};
 
 const initialState = {
   today: new Date(),
@@ -27,7 +45,42 @@ const initialState = {
   offset: 0,
   showFilterPanel: false,
   showModal: false,
+  displayMode: 'CAROUSEL',
+  modeIndex: null,
+  views: Object.values(MODAL_VIEWS).map(({ name }, index) => ({
+    name,
+    value: index,
+  })),
+  current: MODAL_VIEWS.CAROUSEL.name,
+  default: MODAL_VIEWS.CAROUSEL.name,
+  roles: [
+    {
+      link: <div>CAROUSEL</div>,
+      mode: 'CAROUSEL',
+      render: function carousel() {
+        return <Carousel />;
+      },
+    },
+
+    {
+      link: <div>TABLE</div>,
+      mode: 'TABLE',
+      render: function table() {
+        return <Table />;
+      },
+    },
+
+    {
+      link: <div>LIST</div>,
+      mode: 'LIST',
+      render: function list() {
+        return <List />;
+      },
+    },
+  ],
 };
+
+const isStepValid = payload => Object.keys(MODAL_VIEWS).includes(payload);
 
 export const api = createReducer(initialState, {
   [INIT_COUNTRIES]: (state, action) => ({
@@ -73,5 +126,17 @@ export const api = createReducer(initialState, {
   [SHOW_FILTER_PANEL]: (state, action) => ({
     ...state,
     showFilterPanel: action.payload,
+  }),
+  [SET_SELECTED_MACHINE_ROLE]: (state, action) => ({
+    ...state,
+    mode: action.payload,
+  }),
+  [SET_MODE_INDEX]: (state, action) => ({
+    ...state,
+    modeIndex: action.payload,
+  }),
+  [SET_CURRENT_MODE]: (state, action) => ({
+    ...state,
+    current: action.payload && isStepValid(action.payload) ? action.payload : state.default,
   }),
 });

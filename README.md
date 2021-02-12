@@ -1,5 +1,5 @@
 # COVID-19 
-![Kalendar App](https://github.com/RandolphG/COVID19/blob/main/public/_covid.gif?raw=true)
+![Kalendar App](https://github.com/RandolphG/COVID19/blob/main/public/_covid01.gif?raw=true)
 
 ## COVID-19 Dashboard [electron]
 

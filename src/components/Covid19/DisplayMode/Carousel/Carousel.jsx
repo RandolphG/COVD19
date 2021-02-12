@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ErrorBoundary } from '../../../ErrorBoundary';
-import s from './style';
-import Countries from './Countries';
+import s from '../../style';
+import Countries from '../../Countries';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   goNEXT,
@@ -109,46 +109,42 @@ const Covid19 = () => {
   );
   return (
     <ErrorBoundary>
-      <s.Container>
-        <s.Content>
-          {isLoading && (
-            <div className="slides">
-              <PrevBtn />
-              {countriesSelector.map(
-                (
-                  {
-                    Country,
-                    NewConfirmed,
-                    TotalRecovered,
-                    TotalConfirmed,
-                    TotalDeaths,
-                    NewDeaths,
-                    NewRecovered,
-                  },
-                  index
-                ) => {
-                  return (
-                    <Countries
-                      totalrecovered={TotalRecovered}
-                      newrecovered={NewRecovered}
-                      totaldeaths={TotalDeaths}
-                      deaths={NewDeaths}
-                      country={Country}
-                      total={TotalConfirmed}
-                      newconfirmed={NewConfirmed}
-                      key={index}
-                      currentIndex={index}
-                    />
-                  );
-                }
-              )}
-              <NextBtn />
-            </div>
-          )}
-        </s.Content>
-        <Modal />
-        <Background />
-      </s.Container>
+      <s.Content>
+        {isLoading && (
+          <div className="slides">
+            <PrevBtn />
+            {countriesSelector.map(
+              (
+                {
+                  Country,
+                  NewConfirmed,
+                  TotalRecovered,
+                  TotalConfirmed,
+                  TotalDeaths,
+                  NewDeaths,
+                  NewRecovered,
+                },
+                index
+              ) => {
+                return (
+                  <Countries
+                    totalrecovered={TotalRecovered}
+                    newrecovered={NewRecovered}
+                    totaldeaths={TotalDeaths}
+                    deaths={NewDeaths}
+                    country={Country}
+                    total={TotalConfirmed}
+                    newconfirmed={NewConfirmed}
+                    key={index}
+                    currentIndex={index}
+                  />
+                );
+              }
+            )}
+            <NextBtn />
+          </div>
+        )}
+      </s.Content>
     </ErrorBoundary>
   );
 };

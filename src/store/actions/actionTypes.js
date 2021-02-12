@@ -6,11 +6,7 @@ export const PREV = 'PREV';
 
 export const SET_SLIDE_INDEX = 'SET_SLIDE_INDEX';
 
-export const SET_FILTERED_DAYS = 'SET_FILTERED_DAYS';
-
 export const SET_OFFSET = 'SET_OFFSET';
-
-export const INIT_THIS_MONTH = 'INIT_THIS_MONTH';
 
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
@@ -24,3 +20,10 @@ export const INIT_GLOBAL_DATA = 'INIT_GLOBAL_DATA';
 export const INIT_DATE = 'INIT_DATE';
 
 export const INIT_FLAGS = 'INIT_FLAGS';
+
+/* MODE */
+export const SET_SELECTED_MACHINE_ROLE = 'SET_SELECTED_MACHINE_ROLE';
+
+export const SET_MODE_INDEX = 'SET_MODE_INDEX';
+
+export const SET_CURRENT_MODE = 'SET_CURRENT_MODE';

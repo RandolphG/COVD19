@@ -11,13 +11,17 @@ import {
   initGlobalData,
   initNumberOfCountries,
 } from '../../store/actions';
-import { getCountries, getSlideIndex } from '../../store';
+import { getCountries, getRoles, getSlideIndex } from '../../store';
 import { Background } from './Background';
 import Modal from './Modal/Modal';
 import { getFlags, fetchApi } from '../../services/getCountrySummary';
 import Loader from './Loader';
 import { Menu } from './Menu';
 import Ticker from './Ticker';
+import DisplayMode from './DisplayMode';
+import Navigation from './DisplayMode/Navigation';
+import { StyledModalContent } from './DisplayMode/DisplayMode';
+import ShootingStar from './DisplayMode/ShootingStar';
 
 /**
  * covid data app
@@ -32,6 +36,8 @@ const Covid19 = () => {
   const cachedGlobalData = localStorage.getItem('global-data');
   const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
   const cachedFlags = localStorage.getItem('flags');
+
+  const roles = useSelector(getRoles);
 
   /* local state */
   const [flags, setFlags] = useState(cachedFlags && JSON.parse(cachedFlags));
@@ -123,58 +129,9 @@ const Covid19 = () => {
           newconfirmed={globalData.NewConfirmed}
           newdeaths={globalData.NewDeaths}
         />
-
-        <div
-          style={{
-            width: '100px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            position: 'absolute',
-            top: '3%',
-            right: '3%',
-          }}
-        >
-          <div>table</div>
-          <div>list</div>
-          <div>other</div>
-        </div>
-        <s.Content>
-          {isLoading && (
-            <div className="slides">
-              <PrevBtn />
-              {countriesSelector.map(
-                (
-                  {
-                    Country,
-                    NewConfirmed,
-                    TotalRecovered,
-                    TotalConfirmed,
-                    TotalDeaths,
-                    NewDeaths,
-                    NewRecovered,
-                  },
-                  index
-                ) => {
-                  return (
-                    <Countries
-                      totalrecovered={TotalRecovered}
-                      newrecovered={NewRecovered}
-                      totaldeaths={TotalDeaths}
-                      deaths={NewDeaths}
-                      country={Country}
-                      total={TotalConfirmed}
-                      newconfirmed={NewConfirmed}
-                      key={index}
-                      currentIndex={index}
-                    />
-                  );
-                }
-              )}
-              <NextBtn />
-            </div>
-          )}
-        </s.Content>
-        <Modal />
+        <Navigation roles={roles} />
+        <DisplayMode />
+        <ShootingStar />
         <Background />
       </s.Container>
     </ErrorBoundary>

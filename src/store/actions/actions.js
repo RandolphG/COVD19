@@ -10,6 +10,9 @@ import {
   INIT_GLOBAL_DATA,
   INIT_DATE,
   INIT_FLAGS,
+  SET_MODE_INDEX,
+  SET_SELECTED_MACHINE_ROLE,
+  SET_CURRENT_MODE,
 } from './actionTypes';
 
 export const showFilterPanel = payload => ({ type: SHOW_FILTER_PANEL, payload });
@@ -33,3 +36,18 @@ export const initGlobalData = payload => ({ type: INIT_GLOBAL_DATA, payload });
 export const initFlags = payload => ({ type: INIT_FLAGS, payload });
 
 export const initDate = payload => ({ type: INIT_DATE, payload });
+
+export const setSelectedMachineRole = payload => ({
+  type: SET_SELECTED_MACHINE_ROLE,
+  payload,
+});
+
+export const setMode = payload => ({
+  type: SET_MODE_INDEX,
+  payload,
+});
+
+export const setCurrentMode = payload => ({
+  type: SET_CURRENT_MODE,
+  payload,
+});

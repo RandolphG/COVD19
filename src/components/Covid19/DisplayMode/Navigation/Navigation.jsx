@@ -4,19 +4,22 @@ import React, { createRef, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import config from '../../../../../../../themes/darkTheme';
-import { setCancelDisable, setMode, setSelectedMachineRole } from '../../../../../actions';
-import { getCancelOption, getModeIndex } from '../../../../../selectors';
-import { Mode } from '../Mode';
-
-const StyledWrapper = styled.nav`
-  width: 570px;
-  position: relative;
-`;
+import ModeButtons from '../ModeButtons';
+import { setMode, setSelectedMachineRole } from '../../../../store/actions';
+import { getModeIndex } from '../../../../store';
 
 const StyledContent = styled.main`
-  width: 100%;
+  width: 90%;
   min-height: fit-content;
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  z-index: 1000;
+`;
+
+const StyledWrapper = styled.nav`
+  background: cornflowerblue;
+  width: 100px;
 `;
 
 const StyledMain = styled.section`
@@ -31,8 +34,9 @@ const StyledNav = styled.ul`
 `;
 
 const StyledHover = styled(motion.div)`
+  height: 50%;
   border-radius: 4px;
-  border: ${config.mainContrastColor} 3px solid;
+  border: yellow 3px solid;
   bottom: 0;
   left: 0;
   position: absolute;
@@ -46,7 +50,6 @@ const Navigation = ({ roles }) => {
   const [activeIndex, setActiveIndex] = useState(modeIndex);
   const controls = useAnimation();
   const dispatch = useDispatch();
-  const disable = useSelector(getCancelOption);
 
   const modeRefs = roles.reduce((acc, role) => {
     acc[role.mode] = createRef();
@@ -80,13 +83,11 @@ const Navigation = ({ roles }) => {
     setModeIndex(activeIndex);
     dispatch(setMode(activeIndex));
     dispatch(setSelectedMachineRole(mode));
-
-    disable && dispatch(setCancelDisable(false));
   };
 
   useEffect(() => {
     const animation = {
-      x: `${activeIndex * 100}%`,
+      x: `${activeIndex * 200}%`,
       transition: { type: 'ease-in-out', duration: 0.1 },
     };
 
@@ -96,12 +97,7 @@ const Navigation = ({ roles }) => {
   useEffect(() => {
     const move = offset => {
       setModeIndex(shiftIndex(activeIndex, offset, restraints));
-
       setActiveIndex(shiftIndex(activeIndex, offset, restraints));
-
-      if (disable) {
-        dispatch(setCancelDisable(false));
-      }
     };
 
     const onKeyDown = ({ keyCode }) => {
@@ -123,7 +119,7 @@ const Navigation = ({ roles }) => {
     return () => {
       window.removeEventListener('keydown', onKeyDown);
     };
-  }, [activeIndex, disable, dispatch, restraints, shiftIndex]);
+  }, [activeIndex, dispatch, restraints, shiftIndex]);
 
   return (
     <StyledContent>
@@ -132,7 +128,7 @@ const Navigation = ({ roles }) => {
           <StyledNav>
             {roles &&
               roles.map(({ mode, link }, index) => (
-                <Mode
+                <ModeButtons
                   key={mode}
                   mode={mode}
                   link={link}
