@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 import {
-  INIT_COUNTRY_SUMMARIES,
+  INIT_COUNTRIES,
   INIT_NUMBER_OF_COUNTRIES,
   INIT_GLOBAL_DATA,
   TOGGLE_MODAL,
@@ -30,7 +30,7 @@ const initialState = {
 };
 
 export const api = createReducer(initialState, {
-  [INIT_COUNTRY_SUMMARIES]: (state, action) => ({
+  [INIT_COUNTRIES]: (state, action) => ({
     ...state,
     countries: action.payload,
   }),

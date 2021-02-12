@@ -1,7 +1,7 @@
 # COVID-19 
 
 
-## react COVID-19  app (electron)
+## COVID-19 Dashboard [electron]
 
 ### Installation process :
 
@@ -21,6 +21,7 @@ $ npm run electron
 - 😎 COVID 19 Api : https://covid19api.com/ 
 - 😎 cached api call to local storage
 - 😎 custom CSS
+- 😎 Styled Components
 - 😎 electron
 - 😎 redux
 - 😎 reselect

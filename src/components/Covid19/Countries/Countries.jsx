@@ -1,15 +1,9 @@
 import React from 'react';
-import { useTilt } from '../useTilt';
+import { useTilt } from './useTilt';
 import './style.css';
 import s from './style';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getCurrentSlideIndex,
-  getFlags,
-  getNumberOfCountries,
-  getSlideIndex,
-  isModalShown,
-} from '../../../store';
+import { getCurrentSlideIndex, getFlags, getSlideIndex, isModalShown } from '../../../store';
 import { toggleModal } from '../../../store/actions';
 const image =
   'https://singularityhub.com/wp-content/uploads/2020/06/SpaceX-offshore-launchpads-Starship.jpg';
@@ -22,25 +16,16 @@ const image =
  * @returns {JSX.Element}
  * @constructor
  */
-const Countries = ({
-  currentIndex,
-  country,
-  total,
-  newrecovered,
-  totaldeaths,
-  deaths,
-  newconfirmed,
-  totalrecovered,
-}) => {
+const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }) => {
   // const numberOfCountries = useSelector(getNumberOfCountries);
   const slideIndex = useSelector(getSlideIndex);
   let offset = slideIndex - currentIndex;
   const active = offset === 0 ? true : null;
   const ref = useTilt(active);
-  const index = useSelector(getCurrentSlideIndex);
   const dispatch = useDispatch();
-  const isModalHidden = useSelector(isModalShown);
 
+  const isModalHidden = useSelector(isModalShown);
+  const index = useSelector(getCurrentSlideIndex);
   const flags = useSelector(getFlags);
 
   const toggle = () => {
@@ -57,32 +42,37 @@ const Countries = ({
         '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
       }}
     >
-      <div
-        className="slideBackground"
-        style={{
-          background: 'black',
-        }}
-      />
+      <div className="slideBackground" />
       <div
         className=" slideContent "
         style={{
           background: 'linear-gradient(0deg, black, #444444)',
         }}
       >
-        <div className="slideContentInner">
-          <s.DateInfo>
-            <div style={{ marginBottom: '16px', fontSize: '35px' }}>{country}</div>
-            <s.TextInfo>new confirmed {newconfirmed}</s.TextInfo>
-            <s.TextInfo>total confirmed {total}</s.TextInfo>
-            <s.TextInfo>new deaths {deaths}</s.TextInfo>
-            <s.TextInfo>new recovered {newrecovered}</s.TextInfo>
-            <s.TextInfo>total deaths {totaldeaths}</s.TextInfo>
-            <s.TextInfo>total recovered {totalrecovered}</s.TextInfo>
-            <img src={`${flags[index - 1].flag}`} alt={'flags'} />
+        <div
+          className="slideContentInner"
+          style={{
+            padding: '50px',
+            background: `url(${flags[index].flag}) no-repeat center `,
+            backgroundSize: 'cover',
+            borderRadius: '25px',
+          }}
+        >
+          <s.DateInfo onClick={toggle}>
+            <div style={{ height: '50%', marginBottom: '16px', fontSize: '25px' }}>{country}</div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'absolute',
+                bottom: '-10%',
+              }}
+            >
+              <s.TextInfo>Confirmed {total}</s.TextInfo>
+              <s.TextInfo>Deaths {totaldeaths}</s.TextInfo>
+              <s.TextInfo>Recovered {totalrecovered}</s.TextInfo>
+            </div>{' '}
           </s.DateInfo>
-          <s.AgencySection>
-            <s.AgencyTitle onClick={toggle}>INFO</s.AgencyTitle>
-          </s.AgencySection>
         </div>
       </div>
     </div>

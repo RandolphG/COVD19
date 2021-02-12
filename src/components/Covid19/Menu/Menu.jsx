@@ -11,7 +11,6 @@ const Menu = () => {
     useEffect(() => {
       playing ? audio.play() : audio.pause();
     }, [playing]);
-
     useEffect(() => {
       audio.addEventListener('ended', () => setPlaying(false));
       return () => {
@@ -31,6 +30,7 @@ const Menu = () => {
   };
 
   const [playing, toggle] = useAudio('http://sfxcontent.s3.amazonaws.com/soundfx/Knife-Slice.mp3');
+
   return (
     <div>
       <div className="navigation">
@@ -43,32 +43,17 @@ const Menu = () => {
           <ul className="navigation_list">
             <li className="navigation_item">
               <a href="#" onMouseEnter="playAudio()" className="navigation_link">
-                <span>JAN</span>FEB
+                <span>TABLE</span>
               </a>
             </li>
             <li className="navigation_item">
               <a href="#" onMouseEnter={playing} className="navigation_link">
-                <span>MAR</span>APR
+                <span>GRAPH</span>
               </a>
             </li>
             <li className="navigation_item">
               <a href="#" onMouseEnter={playing} className="navigation_link">
-                <span>MAY</span>JUN
-              </a>
-            </li>
-            <li className="navigation_item">
-              <a href="#" onMouseEnter={playing} className="navigation_link">
-                <span>JUL</span>AUG
-              </a>
-            </li>
-            <li className="navigation_item">
-              <a href="#" onMouseEnter={playing} className="navigation_link">
-                <span>SEP</span>OCT
-              </a>
-            </li>
-            <li className="navigation_item">
-              <a href="#" onMouseEnter={playing} className="navigation_link">
-                <span>NOV</span>DEC
+                <span>LIST</span>
               </a>
             </li>
           </ul>

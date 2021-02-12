@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ErrorBoundary } from '../ErrorBoundary';
+import { ErrorBoundary } from '../../../ErrorBoundary';
 import s from './style';
 import Countries from './Countries';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,14 +10,11 @@ import {
   initFlags,
   initGlobalData,
   initNumberOfCountries,
-} from '../../store/actions';
-import { getCountries, getSlideIndex } from '../../store';
-import { Background } from './Background';
-import Modal from './Modal/Modal';
-import { getFlags, fetchApi } from '../../services/getCountrySummary';
-import Loader from './Loader';
-import { Menu } from './Menu';
-import Ticker from './Ticker';
+} from '../../../../store/actions';
+import { getCountries, getSlideIndex } from '../../../../store';
+import { Background } from '../../Background';
+import Modal from '../../Modal/Modal';
+import { getFlags, fetchApi } from '../../../../services/getCountrySummary';
 
 /**
  * covid data app
@@ -113,31 +110,6 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        {/*<Menu />*/}
-        {/*<Loader />*/}
-        <Ticker
-          totalconfirmed={globalData.NewConfirmed}
-          totaldeaths={globalData.TotalDeaths}
-          totalrecovered={globalData.TotalRecovered}
-          newrecovered={globalData.NewRecovered}
-          newconfirmed={globalData.NewConfirmed}
-          newdeaths={globalData.NewDeaths}
-        />
-
-        <div
-          style={{
-            width: '100px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            position: 'absolute',
-            top: '3%',
-            right: '3%',
-          }}
-        >
-          <div>table</div>
-          <div>list</div>
-          <div>other</div>
-        </div>
         <s.Content>
           {isLoading && (
             <div className="slides">

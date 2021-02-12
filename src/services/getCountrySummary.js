@@ -1,5 +1,3 @@
-import { generateLaunchCalendarKey } from './index';
-
 const flagURL = `https://corona.lmao.ninja/v2/countries`;
 const baseURL = `https://api.covid19api.com/`;
 const summaryURL = `summary`;
@@ -27,6 +25,7 @@ export const fetchApi = async () => {
 };
 
 export const getFlags = async () => {
+  // TODO make filter for flags to match available countries
   try {
     const flagData = await fetch(flagURL).then(res => res.json());
 

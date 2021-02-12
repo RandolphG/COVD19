@@ -5,7 +5,7 @@ import {
   SET_SLIDE_INDEX,
   SET_OFFSET,
   TOGGLE_MODAL,
-  INIT_COUNTRY_SUMMARIES,
+  INIT_COUNTRIES,
   INIT_NUMBER_OF_COUNTRIES,
   INIT_GLOBAL_DATA,
   INIT_DATE,
@@ -24,7 +24,7 @@ export const setOffset = payload => ({ type: SET_OFFSET, payload });
 
 export const toggleModal = payload => ({ type: TOGGLE_MODAL, payload });
 
-export const initCountrySummaries = payload => ({ type: INIT_COUNTRY_SUMMARIES, payload });
+export const initCountries = payload => ({ type: INIT_COUNTRIES, payload });
 
 export const initNumberOfCountries = payload => ({ type: INIT_NUMBER_OF_COUNTRIES, payload });
 

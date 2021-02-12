@@ -1,0 +1,40 @@
+
+.marquee {
+    background: black;
+    border:1px solid black;
+    display: inline-block;
+    margin: 3rem auto 0;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    z-index: 800;
+    top: -5%;
+}
+
+.scroll-marquee {
+    font-size: 1rem;
+    display: inline-block;
+    padding: .7rem 1.4rem;
+    position: relative;
+    transform: translateX(100%);
+    animation: marquee 8.5s linear  infinite forwards;
+}
+
+.scroll-marquee:last-child {
+    animation: marquee 8.5s linear -4.5s infinite forwards;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+@keyframes marquee {
+
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

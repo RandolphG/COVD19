@@ -15,8 +15,10 @@ const TextInfo = styled.h6`
 
 const DateInfo = styled.span`
   display: flex;
+  height: 100%;
+  width: 100%;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding-left: 16px;
   margin: 0;
 `;
