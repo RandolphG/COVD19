@@ -1,9 +1,6 @@
 # COVID-19 
 
 
-![Kalendar App](https://github.com/RandolphG/Kalendar/blob/master/public/_calendar06.gif?raw=true)
-
-
 ## react COVID-19  app (electron)
 
 ### Installation process :
@@ -15,7 +12,7 @@
 
 
 ```bash
-$ git clone https://github.com/RandolphG/Kalendar.git
+$ git clone https://github.com/RandolphG/COVID19.git
 $ cd project
 $ npm i
 $ npm run electron 
