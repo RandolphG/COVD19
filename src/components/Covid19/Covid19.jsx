@@ -54,7 +54,6 @@ const Covid19 = () => {
   /* selectors */
   // TODO change seconds to 1 minute
   const slideIndex = useSelector(getSlideIndex);
-  const countriesSelector = useSelector(getCountries);
 
   useEffect(() => {
     const apiExpiration = localStorage.getItem('api-expiration');
@@ -121,18 +120,19 @@ const Covid19 = () => {
       <s.Container>
         {/*<Menu />*/}
         {/*<Loader />*/}
-        <Ticker
-          totalconfirmed={globalData.NewConfirmed}
-          totaldeaths={globalData.TotalDeaths}
-          totalrecovered={globalData.TotalRecovered}
-          newrecovered={globalData.NewRecovered}
-          newconfirmed={globalData.NewConfirmed}
-          newdeaths={globalData.NewDeaths}
-        />
+        {/*<Ticker*/}
+        {/*  totalconfirmed={globalData.NewConfirmed}*/}
+        {/*  totaldeaths={globalData.TotalDeaths}*/}
+        {/*  totalrecovered={globalData.TotalRecovered}*/}
+        {/*  newrecovered={globalData.NewRecovered}*/}
+        {/*  newconfirmed={globalData.NewConfirmed}*/}
+        {/*  newdeaths={globalData.NewDeaths}*/}
+        {/*/>*/}
         <Navigation roles={roles} />
         <DisplayMode />
         <ShootingStar />
-        <Background />
+        {/*<Background />*/}
+        {/*<Modal />*/}
       </s.Container>
     </ErrorBoundary>
   );

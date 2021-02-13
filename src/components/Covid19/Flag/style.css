@@ -1,0 +1,179 @@
+
+
+
+.flag-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+}
+
+.wrapper {
+    position: relative;
+    width: 360px;
+    height: 180px;
+    transform: rotateY(20deg) skew(5deg);
+    transform-style: preserve-3d;
+    background-image: url("https://flags.fmcdn.net/data/flags/w580/ag.png");
+    background-size: 0;
+    background-position: -200% -200%;
+}
+.wrapper::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 7.5px;
+    height: 360px;
+    background: transparent;
+    left: 7px;
+}
+
+.s {
+    position: absolute;
+    transform-style: preserve-3d;
+    left: 14px;
+    width: 15px;
+    height: 100%;
+    transform-origin: 0 0;
+    background-repeat: no-repeat;
+    background-size: 360px 100%;
+    transform: translateZ(0.0001px) rotateY(14.1176470588deg);
+    background-image: inherit;
+    animation-name: wave;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+.s1 {
+    background-position-x: -15px;
+    animation-delay: 0.08s;
+}
+
+.s2 {
+    background-position-x: -30px;
+    animation-delay: 0.16s;
+}
+
+.s3 {
+    background-position-x: -45px;
+    animation-delay: 0.24s;
+}
+
+.s4 {
+    background-position-x: -60px;
+    animation-delay: 0.32s;
+}
+
+.s5 {
+    background-position-x: -75px;
+    animation-delay: 0.4s;
+}
+
+.s6 {
+    background-position-x: -90px;
+    animation-delay: 0.48s;
+}
+
+.s7 {
+    background-position-x: -105px;
+    animation-delay: 0.56s;
+}
+
+.s8 {
+    background-position-x: -120px;
+    animation-delay: 0.64s;
+}
+
+.s9 {
+    background-position-x: -135px;
+    animation-delay: 0.72s;
+}
+
+.s10 {
+    background-position-x: -150px;
+    animation-delay: 0.8s;
+}
+
+.s11 {
+    background-position-x: -165px;
+    animation-delay: 0.88s;
+}
+
+.s12 {
+    background-position-x: -180px;
+    animation-delay: 0.96s;
+}
+
+.s13 {
+    background-position-x: -195px;
+    animation-delay: 1.04s;
+}
+
+.s14 {
+    background-position-x: -210px;
+    animation-delay: 1.12s;
+}
+
+.s15 {
+    background-position-x: -225px;
+    animation-delay: 1.2s;
+}
+
+.s16 {
+    background-position-x: -240px;
+    animation-delay: 1.28s;
+}
+
+.s17 {
+    background-position-x: -255px;
+    animation-delay: 1.36s;
+}
+
+.s18 {
+    background-position-x: -270px;
+    animation-delay: 1.44s;
+}
+
+.s19 {
+    background-position-x: -285px;
+    animation-delay: 1.52s;
+}
+
+.s20 {
+    background-position-x: -300px;
+    animation-delay: 1.6s;
+}
+
+.s21 {
+    background-position-x: -315px;
+    animation-delay: 1.68s;
+}
+
+.s22 {
+    background-position-x: -330px;
+    animation-delay: 1.76s;
+}
+
+.s23 {
+    background-position-x: -345px;
+    animation-delay: 1.84s;
+}
+
+.s24 {
+    background-position-x: -360px;
+    animation-delay: 1.92s;
+}
+
+@-webkit-keyframes wave {
+    to {
+        transform: translateZ(0.0001px) rotateY(-14.1176470588deg);
+    }
+}
+
+@keyframes wave {
+    to {
+        transform: translateZ(0.0001px) rotateY(-14.1176470588deg);
+    }
+}

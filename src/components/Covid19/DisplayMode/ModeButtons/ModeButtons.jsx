@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledLink = styled(({ selected, ...props }) => <Link selected={selected} {...props} />)`
-  background: ${props => props.selected && 'rgba(255, 226, 58, 0.1)'};
+  background: ${props => props.selected && 'rgb(32,142,176)'};
   cursor: pointer;
   display: block;
   padding: 3px;

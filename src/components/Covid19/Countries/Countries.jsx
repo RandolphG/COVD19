@@ -5,12 +5,18 @@ import s from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentSlideIndex, getFlags, getSlideIndex, isModalShown } from '../../../store';
 import { toggleModal } from '../../../store/actions';
+import styled from 'styled-components';
+
+const Flag = styled.img`
+  position: absolute;
+  top: 15%;
+  border-radius: 6px;
+  max-width: 230px;
+`;
 
 /**
  * return days for carousel
  * @param offset
- * @param launches
- * @param weekday
  * @returns {JSX.Element}
  * @constructor
  */
@@ -20,7 +26,6 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
   const active = offset === 0 ? true : null;
   const ref = useTilt(active);
   const dispatch = useDispatch();
-
   const isModalHidden = useSelector(isModalShown);
   const index = useSelector(getCurrentSlideIndex);
   const flags = useSelector(getFlags);
@@ -28,8 +33,6 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
   const toggle = () => {
     dispatch(toggleModal(!isModalHidden));
   };
-
-  const backgroundUrl = `url(${flags[index].flag}) no-repeat center`;
 
   return (
     <div
@@ -41,29 +44,22 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
         '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
       }}
     >
-      <div className="slideBackground" />
       <div
         className=" slideContent "
         style={{
           background: 'linear-gradient(0deg, black, #444444)',
         }}
       >
-        <div
-          className="slideContentInner"
-          style={{
-            padding: '50px',
-            background: `${backgroundUrl}`,
-            backgroundSize: 'cover',
-          }}
-        >
+        <div className="slideContentInner">
           <s.DateInfo onClick={toggle}>
-            <div style={{ height: '50%', marginBottom: '16px', fontSize: '25px' }}>{country}</div>
+            <Flag src={flags[index].flag} alt={`flag${index}`} />
+            <div style={{ marginBottom: '16px', fontSize: '20px' }}>{country}</div>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'absolute',
-                bottom: '-10%',
+                bottom: '10%',
               }}
             >
               <s.TextInfo>Confirmed {total}</s.TextInfo>

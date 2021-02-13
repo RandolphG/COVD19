@@ -19,7 +19,7 @@ $ npm run electron
 ```
 ## Features
 - 😎 COVID 19 Api : https://covid19api.com/ 
-- 😎 cached api call to local storage
+- 😎 CDN of Country Flags : https://flags.fmcdn.net/
 - 😎 custom CSS
 - 😎 Styled Components
 - 😎 electron

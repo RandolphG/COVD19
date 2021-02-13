@@ -23,13 +23,10 @@ const Ticker = ({
   return (
     <p className="marquee">
       <span className="scroll-marquee">
-        &#128540; {newconfirmed} &#128564; {newdeaths} {newrecovered} &#128567; {totalconfirmed}
-        {totalrecovered}
-        &#128564;
-        {totaldeaths}
-      </span>{' '}
+        {newconfirmed} {newdeaths} {newrecovered}
+      </span>
       <span className="scroll-marquee">
-        {newconfirmed} {newdeaths} {newrecovered} {totalconfirmed} {totalrecovered} {totaldeaths}
+        {totalconfirmed} {totalrecovered} {totaldeaths}
       </span>
     </p>
   );

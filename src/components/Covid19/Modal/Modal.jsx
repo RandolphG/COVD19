@@ -2,8 +2,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSlideIndex, isModalShown } from '../../../store';
+import { isModalShown } from '../../../store';
 import { toggleModal } from '../../../store/actions';
+import { Flag } from '../Flag';
 
 const backdrop = {
   visible: { opacity: 1 },
@@ -13,7 +14,7 @@ const backdrop = {
 const modal = {
   hidden: { y: '-100px', opacity: 0, transition: { delay: 0.6 } },
   visible: {
-    y: '100px',
+    y: '0',
     opacity: 1,
     transition: { delay: 0.5 },
   },
@@ -21,15 +22,11 @@ const modal = {
 
 const BackdropCSS = styled(motion.div)`
   box-sizing: border-box;
-  position: fixed;
+  position: absolute;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.7);
   z-index: 500;
-  display: flex;
-`;
-
-const ModalContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,22 +34,6 @@ const ModalContainer = styled(motion.div)`
 `;
 
 const ModalCSS = styled(motion.div)`
-  background: -moz-radial-gradient(
-    center,
-    ellipse cover,
-    rgba(150, 150, 150, 1) 0%,
-    rgba(89, 89, 89, 1) 100%
-  );
-  background: -webkit-gradient(
-    radial,
-    center center,
-    0px,
-    center center,
-    100%,
-    color-stop(0%, rgba(150, 150, 150, 1)),
-    color-stop(100%, rgba(89, 89, 89, 1))
-  );
-
   background: radial-gradient(
     ellipse at center,
     rgba(150, 150, 150, 1) 0%,
@@ -61,8 +42,8 @@ const ModalCSS = styled(motion.div)`
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#969696', endColorstr = '#595959', GradientType = 1);
   color: black;
   border-radius: 6px;
-  width: 375px;
-  height: 300px;
+  width: 600px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,7 +74,6 @@ const ModalCSS = styled(motion.div)`
 
 const Modal = () => {
   const isModalHidden = useSelector(isModalShown);
-  const day = useSelector(getSlideIndex);
   const dispatch = useDispatch();
   const toggle = () => dispatch(toggleModal(!isModalHidden));
 
@@ -107,13 +87,9 @@ const Modal = () => {
           exit="hidden"
           onClick={toggle}
         >
-          <ModalContainer variants={modal}>
-            <ModalCSS variants={modal}>
-              <div style={{ display: 'flex', flexDirection: 'row', background: 'green' }}>
-                STUFF
-              </div>
-            </ModalCSS>
-          </ModalContainer>
+          <ModalCSS variants={modal}>
+            <Flag />
+          </ModalCSS>
         </BackdropCSS>
       )}
     </AnimatePresence>

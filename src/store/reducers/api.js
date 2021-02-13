@@ -44,7 +44,7 @@ const initialState = {
   isDataExpired: false,
   offset: 0,
   showFilterPanel: false,
-  showModal: false,
+  showModal: true,
   displayMode: 'CAROUSEL',
   modeIndex: null,
   views: Object.values(MODAL_VIEWS).map(({ name }, index) => ({
@@ -55,26 +55,25 @@ const initialState = {
   default: MODAL_VIEWS.CAROUSEL.name,
   roles: [
     {
-      link: <div>CAROUSEL</div>,
-      mode: 'CAROUSEL',
+      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }}>></span>,
+      mode: 'CARD',
       render: function carousel() {
         return <Carousel />;
       },
     },
-
     {
-      link: <div>TABLE</div>,
-      mode: 'TABLE',
-      render: function table() {
-        return <Table />;
+      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }}>></span>,
+      mode: 'LIST',
+      render: function list() {
+        return <List />;
       },
     },
 
     {
-      link: <div>LIST</div>,
-      mode: 'LIST',
-      render: function list() {
-        return <List />;
+      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }}>></span>,
+      mode: 'TABLE',
+      render: function table() {
+        return <Table />;
       },
     },
   ],

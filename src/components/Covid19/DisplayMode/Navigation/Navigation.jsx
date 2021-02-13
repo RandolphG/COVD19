@@ -13,13 +13,12 @@ const StyledContent = styled.main`
   min-height: fit-content;
   position: absolute;
   right: 3%;
-  top: 3%;
+  top: 2%;
   z-index: 1000;
 `;
 
 const StyledWrapper = styled.nav`
-  background: cornflowerblue;
-  width: 100px;
+  width: 150px;
 `;
 
 const StyledMain = styled.section`
@@ -34,7 +33,7 @@ const StyledNav = styled.ul`
 `;
 
 const StyledHover = styled(motion.div)`
-  height: 50%;
+  height: 80%;
   border-radius: 4px;
   border: yellow 3px solid;
   bottom: 0;
@@ -58,11 +57,11 @@ const Navigation = ({ roles }) => {
   }, {});
 
   const initial = {
-    x: `${activeIndex * 100}%`,
+    x: `${activeIndex * 20}%`,
   };
 
   const selectorFrame = {
-    width: `${100 / roles.length}%`,
+    width: `${65 / roles.length}%`,
   };
 
   const restraints = 3;
