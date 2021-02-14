@@ -1,7 +1,8 @@
 import React from 'react';
+import { Rows } from './Rows';
 
 const Table = () => {
-  return <div>Table</div>;
+  return <Rows />;
 };
 
 export default Table;

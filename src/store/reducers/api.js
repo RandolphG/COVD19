@@ -55,14 +55,14 @@ const initialState = {
   default: MODAL_VIEWS.CAROUSEL.name,
   roles: [
     {
-      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }}>></span>,
+      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
       mode: 'CARD',
       render: function carousel() {
         return <Carousel />;
       },
     },
     {
-      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }}>></span>,
+      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
       mode: 'LIST',
       render: function list() {
         return <List />;
@@ -70,7 +70,7 @@ const initialState = {
     },
 
     {
-      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }}>></span>,
+      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
       mode: 'TABLE',
       render: function table() {
         return <Table />;

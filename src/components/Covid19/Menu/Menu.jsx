@@ -1,66 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import { motion, AnimateSharedLayout } from 'framer-motion';
+import styled from 'styled-components';
 import './style.css';
+const screens = [
+  {
+    title: 'Carousel',
+    color: '#0099ff',
+  },
+  {
+    title: 'List',
+    color: '#ff0055',
+  },
+  {
+    title: 'Four',
+    color: '#ffaa00',
+  },
+];
 
-const Menu = () => {
-  const useAudio = url => {
-    const [audio] = useState(new Audio(url));
-    const [playing, setPlaying] = useState(false);
+const Border = styled.div`
+  font-family: Montserrat, sans-serif;
+  box-sizing: border-box;
+  font-weight: 600;
+  position: absolute;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 500;
+`;
 
-    const toggle = () => setPlaying(!playing);
-
-    useEffect(() => {
-      playing ? audio.play() : audio.pause();
-    }, [playing]);
-    useEffect(() => {
-      audio.addEventListener('ended', () => setPlaying(false));
-      return () => {
-        audio.removeEventListener('ended', () => setPlaying(false));
-      };
-    }, []);
-
-    return [playing, toggle];
-  };
-
-  const Player = ({ url }) => {
-    return (
-      <div>
-        <button onClick={toggle}>{playing ? 'Pause' : 'Play'}</button>
-      </div>
-    );
-  };
-
-  const [playing, toggle] = useAudio('http://sfxcontent.s3.amazonaws.com/soundfx/Knife-Slice.mp3');
+export default function App() {
+  const [selected, setSelected] = useState(0);
 
   return (
-    <div>
-      <div className="navigation">
-        <input type="checkbox" className="navigation_checkbox" id="navi-toggle" />
-        <label htmlFor="navi-toggle" className="navigation_button">
-          <span className="navigation_icon" />
-        </label>
-        <div className="navigation_background">&nbsp;</div>
-        <nav className="navigation_nav">
-          <ul className="navigation_list">
-            <li className="navigation_item">
-              <a href="#" onMouseEnter="playAudio()" className="navigation_link">
-                <span>TABLE</span>
-              </a>
-            </li>
-            <li className="navigation_item">
-              <a href="#" onMouseEnter={playing} className="navigation_link">
-                <span>GRAPH</span>
-              </a>
-            </li>
-            <li className="navigation_item">
-              <a href="#" onMouseEnter={playing} className="navigation_link">
-                <span>LIST</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+    <Border>
+      <AnimateSharedLayout>
+        <ol style={{ transform: 'translateZ(0)' }}>
+          {screens.map(({ title, color }, i) => (
+            <motion.li
+              animate
+              key={i}
+              className={`title ${i === selected && 'selected'}`}
+              style={{ color: i === selected ? color : '#333' }}
+              onClick={() => setSelected(i)}
+            >
+              {i === selected && (
+                <motion.div
+                  layoutId="underline"
+                  className="underline"
+                  style={{ backgroundColor: color }}
+                />
+              )}
+              {title.toUpperCase()}
+            </motion.li>
+          ))}
+        </ol>
+      </AnimateSharedLayout>
+    </Border>
   );
-};
-
-export default Menu;
+}

@@ -2,24 +2,40 @@ import React, { useEffect } from 'react';
 import './style.css';
 import axios from 'axios';
 import styled from 'styled-components';
+import { Arrow } from './Arrow';
+import { Search } from './Search';
+import { Preloader } from './Preloader';
+import { Table } from './Table';
+import { GlobalInfo } from './GlobalInfo';
+import { CustomSelect } from './CustomSelect';
 
 const Border = styled.div`
   background-color: red;
   width: 100%;
-  height: 100%;
   position: absolute;
-  z-index: -400;
+  z-index: 400;
   display: flex;
+  top: -200px;
+  right: 400px;
 `;
 
+/**
+ * list view
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const List = () => {
-  const Arrow = () => (
-    <div className="arrow">
-      <div className="arrow__up" />
-      <div className="arrow__down" />
-    </div>
+  /* const CustomSelect = () => (
+    <select className="custom-select" id="select" onChange={changeOrder}>
+      <option selected="" disabled="">
+        Sort By
+      </option>
+      <option value="cases">Total Cases</option>
+      <option value="deaths">Total Deaths</option>
+      <option value="recovered">Total Recoveries</option>
+    </select>
   );
-
+*/
   useEffect(() => {
     // Add a request interceptor
     axios.interceptors.request.use(
@@ -117,7 +133,7 @@ const List = () => {
         return patt.test(str);
       },
     };
-
+    /*
     var search = document.getElementById('search');
     search.addEventListener('keyup', function () {
       var value = this.value.toLowerCase();
@@ -133,8 +149,9 @@ const List = () => {
           element.classList.add('hidden');
         }
       });
-    });
+    });*/
 
+    /*
     document.querySelector('.arrow__up').addEventListener('click', function () {
       window.scrollTo({
         top: 0,
@@ -147,8 +164,26 @@ const List = () => {
         top: document.body.scrollHeight,
         behavior: 'smooth',
       });
-    });
+    });*/
   });
+
+  const onKeyUp = e => {
+    {
+      let value = e.target.value.toLowerCase();
+      console.log('value', value);
+      const rows = document.querySelectorAll('tbody tr');
+      const rowsArray = Array.prototype.slice.call(rows);
+      rowsArray.forEach(function (element, index, array) {
+        let tdCountry = element.childNodes[0].innerHTML.toLowerCase();
+        if (tdCountry.indexOf(value) > -1) {
+          //console.log(tdCountry, tdCountry.indexOf(value));
+          element.classList.remove('hidden');
+        } else {
+          element.classList.add('hidden');
+        }
+      });
+    }
+  };
 
   function changeOrder() {
     const value = document.getElementById('select').value;
@@ -172,49 +207,13 @@ const List = () => {
 
   return (
     <Border>
+      <Preloader />
       <div className="container">
-        <div className="preloader">
-          <div className="preloader__content">
-            <div className="preloader__loader" />
-            <div className="preloader__txt">Loading ...</div>
-          </div>
-        </div>
         <div className="statistics">
-          <div className="global">
-            <div className="global__title">corona virus disease 19 (covid-19)</div>
-            <div className="global__cases">
-              <h1 />
-              <h2>Total Cases</h2>
-            </div>
-            <div className="global__deaths">
-              <h1 />
-              <h2>Total Deaths</h2>
-            </div>
-            <div className="global__recovered">
-              <h1 />
-              <h2>Total Recovered</h2>
-            </div>
-          </div>
-          <input type="text" id="search" name="country" placeholder="Search Countries" />
-          <select className="custom-select" id="select" onChange={changeOrder}>
-            <option selected="" disabled="">
-              Sort By
-            </option>
-            <option value="cases">Total Cases</option>
-            <option value="deaths">Total Deaths</option>
-            <option value="recovered">Total Recoveries</option>
-          </select>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Country</th>
-                <th>Cases</th>
-                <th>Deaths</th>
-                <th>Recovered</th>
-              </tr>
-            </thead>
-            <tbody />
-          </table>
+          <GlobalInfo />
+          <Search onKeyUp={onKeyUp} />
+          <CustomSelect />
+          <Table />
         </div>
       </div>
       <Arrow />

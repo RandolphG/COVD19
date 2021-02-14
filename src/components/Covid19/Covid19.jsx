@@ -22,6 +22,9 @@ import DisplayMode from './DisplayMode';
 import Navigation from './DisplayMode/Navigation';
 import { StyledModalContent } from './DisplayMode/DisplayMode';
 import ShootingStar from './DisplayMode/ShootingStar';
+import { Scroll } from './Scroll';
+import { ListPage } from './ListPage';
+import { Sections } from './Sections';
 
 /**
  * covid data app
@@ -118,7 +121,7 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        {/*<Menu />*/}
+        <Menu />
         {/*<Loader />*/}
         {/*<Ticker*/}
         {/*  totalconfirmed={globalData.NewConfirmed}*/}
@@ -128,9 +131,12 @@ const Covid19 = () => {
         {/*  newconfirmed={globalData.NewConfirmed}*/}
         {/*  newdeaths={globalData.NewDeaths}*/}
         {/*/>*/}
-        <Navigation roles={roles} />
-        <DisplayMode />
-        <ShootingStar />
+        {/*<Scroll />*/}
+        {/*<ListPage />*/}
+        <Sections />
+        {/*<Navigation roles={roles} />*/}
+        {/*<DisplayMode />*/}
+        {/*<ShootingStar />*/}
         {/*<Background />*/}
         {/*<Modal />*/}
       </s.Container>

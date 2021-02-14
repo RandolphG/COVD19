@@ -26,6 +26,7 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-user-drag: none;
 }
+
 .preloader--hidden {
     animation-name: hide;
     animation-duration: 0.5s;
@@ -34,6 +35,7 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
+
 .preloader__content {
     position: absolute;
     top: 50%;
@@ -41,6 +43,7 @@
     transform: translate(-50%, -50%);
     font-size: 20px;
 }
+
 .preloader__loader {
     margin: 0 auto;
     width: 70px;
@@ -56,66 +59,89 @@
 }
 
 .container {
+    /*background: #5f91ff;*/
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color: #f0f0f0;
 }
+
+/*
 @media screen and (max-width: 576px) {
     .container {
         display: block;
     }
 }
+*/
+
 .container .statistics {
     margin: 15px;
     position: relative;
 }
+
 .container .statistics .global {
     position: relative;
 }
+
 .container .statistics .global__title {
     margin: 15px 0;
     text-transform: uppercase;
     font-size: xx-large;
     font-weight: bold;
 }
+
 .container .statistics .global__cases {
     margin: 15px 15px 0 0;
     display: inline-block;
 }
+
+/*
 @media screen and (max-width: 576px) {
     .container .statistics .global__cases {
         display: block;
     }
 }
+*/
+
 .container .statistics .global__cases h1 {
     color: #eff318;
 }
+
 .container .statistics .global__recovered {
     margin: 15px 15px 0 0;
     display: inline-block;
 }
+
+/*
 @media screen and (max-width: 576px) {
     .container .statistics .global__recovered {
         display: block;
     }
 }
+*/
+
 .container .statistics .global__recovered h1 {
     color: #9c9;
 }
+
 .container .statistics .global__deaths {
     margin: 15px 15px 0 0;
     display: inline-block;
 }
+
+/*
 @media screen and (max-width: 576px) {
     .container .statistics .global__deaths {
         display: block;
     }
 }
+*/
+
 .container .statistics .global__deaths h1 {
     color: #fb5e53;
 }
+
 .container .statistics > input[type=text] {
     margin: 15px 0;
     width: 200px;
@@ -126,11 +152,15 @@
     font-size: 18px;
     border: 1px solid #696969;
 }
+
+/*
 @media screen and (max-width: 576px) {
     .container .statistics > input[type=text] {
         display: block;
     }
 }
+*/
+
 .container .statistics > .custom-select {
     margin: 15px 0;
     width: 200px;
@@ -141,16 +171,22 @@
     font-size: 18px;
     border: 1px solid #696969;
 }
+/*
+
 @media screen and (max-width: 576px) {
     .container .statistics > .custom-select {
         display: block;
     }
 }
+*/
+
 .container .statistics .table {
     border-collapse: collapse;
     width: 100%;
     min-width: 320px;
 }
+
+/*
 @media screen and (max-width: 576px) {
     .container .statistics .table thead,
     .container .statistics .table tbody,
@@ -160,21 +196,30 @@
         display: block;
     }
 }
+*/
+
 .container .statistics .table > thead {
     background-color: #181818;
 }
+
+/*
 @media screen and (max-width: 576px) {
     .container .statistics .table > thead {
         display: none;
     }
 }
+*/
+
 .container .statistics .table > thead > tr > th {
     text-align: left;
     font-size: 22px;
 }
+
 .container .statistics .table > thead > tr > th:not(:first-child) {
     text-align: right;
 }
+/*
+
 @media screen and (max-width: 576px) {
     .container .statistics .table td:nth-of-type(1)::before {
         content: "Country";
@@ -189,20 +234,26 @@
         content: "Recovered";
     }
 }
+*/
+
 .container .statistics .table th,
 .container .statistics .table td {
     border: 1px solid #696969;
     padding: 9px 15px;
     white-space: nowrap;
 }
+
 .container .statistics .table > tbody > tr > td {
     font-size: 18px;
 }
+
 .container .statistics .table > tbody > tr > td img {
     width: 24px;
     vertical-align: baseline;
     margin-right: 10px;
 }
+
+/*
 @media screen and (max-width: 576px) {
     .container .statistics .table > tbody > tr > td {
         position: relative;
@@ -221,17 +272,22 @@
         white-space: nowrap;
     }
 }
+*/
+
 .container .statistics .table > tbody > tr > td:not(:first-child) {
     text-align: right;
 }
+
 .container .statistics .hidden {
     display: none !important;
 }
-.container .arrow {
-    position: fixed;
-    right: 0;
+
+/*.container .arrow {
+    position: absolute;
+    top: 0;
     bottom: 0;
 }
+
 .container .arrow__up {
     position: relative;
     cursor: pointer;
@@ -241,6 +297,7 @@
     border-radius: 5px;
     margin: 0 25px 3px 0;
 }
+
 .container .arrow__up::before {
     content: "";
     position: absolute;
@@ -252,6 +309,7 @@
     top: 14px;
     transform: rotate(-45deg);
 }
+
 .container .arrow__down {
     position: relative;
     cursor: pointer;
@@ -261,6 +319,7 @@
     border-radius: 5px;
     margin: 0 25px 25px 0;
 }
+
 .container .arrow__down::before {
     content: "";
     position: absolute;
@@ -271,13 +330,14 @@
     left: 10px;
     bottom: 14px;
     transform: rotate(135deg);
-}
+}*/
 
 @keyframes spin {
     100% {
         transform: rotate(360deg);
     }
 }
+
 @keyframes hide {
     0% {
         opacity: 1;
