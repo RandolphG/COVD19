@@ -166,12 +166,6 @@
     animation-delay: 1.92s;
 }
 
-@-webkit-keyframes wave {
-    to {
-        transform: translateZ(0.0001px) rotateY(-14.1176470588deg);
-    }
-}
-
 @keyframes wave {
     to {
         transform: translateZ(0.0001px) rotateY(-14.1176470588deg);

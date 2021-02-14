@@ -10,7 +10,8 @@ const Sections = () => {
 
   setTimeout(() => {
     parallax.scrollTo(1);
-  }, 2000);
+  }, 2500);
+
   return (
     <Parallax
       className="container"
@@ -22,9 +23,9 @@ const Sections = () => {
       <Page01
         offset={0}
         gradient="pink"
-        caption="who we are"
-        first="Lorem ipsum"
-        second="dolor sit"
+        caption="Covid 19"
+        first="electron"
+        second="framer-motion"
         onClick={() => scroll(1)}
       />
       <Page02

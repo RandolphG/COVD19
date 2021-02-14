@@ -41,7 +41,6 @@ function ListPage() {
               key={index}
               size={150}
               radius={20}
-              background="#0F0"
               style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
               <Scroll />

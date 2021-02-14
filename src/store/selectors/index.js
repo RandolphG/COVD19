@@ -25,18 +25,9 @@ export const getCountries = createSelector(getApiData, api => api.countries);
 export const getNumberOfCountries = createSelector(getApiData, api => api.numberOfCountries);
 
 /* get flags */
-export const getFlags = createSelector(getApiData, api => api.flags);
+export const getFlags = createSelector(getApiData, api => api && api.flags);
 
 /* <------------------------ NAVIGATION ---------------------------> */
-export const getSteps = state => state.machineRole.views;
-
-export const getCurrentStep = createSelector(getApiData, api => api && api.current);
-
-export const getDefaultStep = createSelector(getApiData, api => api && api.default);
-
-export const getSelectedRoles = views =>
-  createSelector(getCurrentStep, current => views.find(view => view.name === current));
-
 export const getMachineMode = createSelector(getApiData, api => api.mode);
 
 export const isModeClient = createSelector(getMachineMode, mode => mode === 'Client');

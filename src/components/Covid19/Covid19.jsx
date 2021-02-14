@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { ErrorBoundary } from '../ErrorBoundary';
 import s from './style';
-import Countries from './Countries';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  goNEXT,
-  goPREV,
   initCountries,
   initFlags,
   initGlobalData,
   initNumberOfCountries,
 } from '../../store/actions';
-import { getCountries, getRoles, getSlideIndex } from '../../store';
 import { Background } from './Background';
 import Modal from './Modal/Modal';
 import { getFlags, fetchApi } from '../../services/getCountrySummary';
 import Loader from './Loader';
 import { Menu } from './Menu';
-import Ticker from './Ticker';
 import DisplayMode from './DisplayMode';
 import Navigation from './DisplayMode/Navigation';
-import { StyledModalContent } from './DisplayMode/DisplayMode';
-import ShootingStar from './DisplayMode/ShootingStar';
-import { Scroll } from './Scroll';
+import ShootingStar from './ShootingStar';
 import { ListPage } from './ListPage';
 import { Sections } from './Sections';
 
@@ -39,12 +32,14 @@ const Covid19 = () => {
   const cachedGlobalData = localStorage.getItem('global-data');
   const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
   const cachedFlags = localStorage.getItem('flags');
-
-  const roles = useSelector(getRoles);
+  const cachedFilteredFlags = localStorage.getItem('filtered-flags');
 
   /* local state */
   const [flags, setFlags] = useState(cachedFlags && JSON.parse(cachedFlags));
   const [isLoading, setIsLoading] = useState(true);
+  const [filteredFlagsData, setFilteredFlagsData] = useState(
+    cachedFilteredFlags && JSON.parse(cachedFilteredFlags)
+  );
   const [apiData, setApiData] = useState(cachedApiData && JSON.parse(cachedApiData));
   const [countriesData, setCountriesData] = useState(
     cachedCountries && JSON.parse(cachedCountries)
@@ -53,10 +48,6 @@ const Covid19 = () => {
   const [numberOfCountriesData, setNumberOfCountriesData] = useState(
     cachedNumberOfCountries && JSON.parse(cachedNumberOfCountries)
   );
-
-  /* selectors */
-  // TODO change seconds to 1 minute
-  const slideIndex = useSelector(getSlideIndex);
 
   useEffect(() => {
     const apiExpiration = localStorage.getItem('api-expiration');
@@ -80,61 +71,25 @@ const Covid19 = () => {
     }
 
     if (apiData) {
+      getFlags().then(flags => {
+        dispatch(initFlags(flags));
+      });
+      dispatch(initFlags(flags));
       dispatch(initCountries(countriesData));
       dispatch(initGlobalData(globalData));
       dispatch(initNumberOfCountries(numberOfCountriesData));
-      dispatch(initFlags(flags));
     }
   }, []);
 
-  /**
-   * return next day
-   * @returns {JSX.Element}
-   * @constructor
-   */
-  const NextBtn = () => (
-    <button
-      onClick={() => {
-        const nextIndex = (slideIndex + 1) % numberOfCountriesData;
-        dispatch(goNEXT(nextIndex));
-      }}
-    >
-      ›
-    </button>
-  );
-
-  /**
-   * return previous day
-   * @returns {JSX.Element}
-   * @constructor
-   */
-  const PrevBtn = () => (
-    <button
-      onClick={() => {
-        const prevIndex = slideIndex === 0 ? numberOfCountriesData - 1 : slideIndex - 1;
-        dispatch(goPREV(prevIndex));
-      }}
-    >
-      ‹
-    </button>
-  );
   return (
     <ErrorBoundary>
       <s.Container>
-        <Menu />
+        {/*<Menu />*/}
         {/*<Loader />*/}
-        {/*<Ticker*/}
-        {/*  totalconfirmed={globalData.NewConfirmed}*/}
-        {/*  totaldeaths={globalData.TotalDeaths}*/}
-        {/*  totalrecovered={globalData.TotalRecovered}*/}
-        {/*  newrecovered={globalData.NewRecovered}*/}
-        {/*  newconfirmed={globalData.NewConfirmed}*/}
-        {/*  newdeaths={globalData.NewDeaths}*/}
-        {/*/>*/}
-        {/*<Scroll />*/}
-        {/*<ListPage />*/}
-        <Sections />
-        {/*<Navigation roles={roles} />*/}
+        <ListPage />
+        {/*<Sections />*/}
+        {/*<TableList />*/}
+        {/*<Navigation />*/}
         {/*<DisplayMode />*/}
         {/*<ShootingStar />*/}
         {/*<Background />*/}

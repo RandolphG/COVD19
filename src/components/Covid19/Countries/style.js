@@ -1,38 +1,10 @@
 import styled from 'styled-components';
 
-const AgencyTitle = styled.p`
-  color: aqua;
-  font-size: large;
-  font-weight: bold;
-  margin-bottom: 4px;
-  padding: 0;
-  text-align: center;
+const Flag = styled.img`
+  position: absolute;
+  top: 15%;
+  border-radius: 6px;
+  max-width: 230px;
 `;
 
-const TextInfo = styled.h6`
-  margin: 0;
-`;
-
-const DateInfo = styled.span`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  padding-left: 16px;
-  margin: 0;
-`;
-
-const NumberOfDay = styled.h1`
-  font-size: 100px;
-  margin: 0;
-`;
-
-const AgencySection = styled.div`
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export default { NumberOfDay, DateInfo, TextInfo, AgencyTitle, AgencySection };
+export default { Flag };

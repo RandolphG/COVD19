@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ErrorBoundary } from '../../../ErrorBoundary';
 import s from '../../style';
 import Countries from '../../Countries';
 import { useDispatch, useSelector } from 'react-redux';
+import { goNEXT, goPREV } from '../../../../store/actions';
 import {
-  goNEXT,
-  goPREV,
-  initCountries,
-  initFlags,
-  initGlobalData,
-  initNumberOfCountries,
-} from '../../../../store/actions';
-import { getCountries, getSlideIndex } from '../../../../store';
-import { Background } from '../../Background';
-import Modal from '../../Modal/Modal';
-import { getFlags, fetchApi } from '../../../../services/getCountrySummary';
+  getCountries,
+  getCurrentSlideIndex,
+  getNumberOfCountries,
+  getSlideIndex,
+} from '../../../../store';
 
 /**
  * covid data app
@@ -23,59 +18,13 @@ import { getFlags, fetchApi } from '../../../../services/getCountrySummary';
  */
 const Covid19 = () => {
   const dispatch = useDispatch();
-  /* cachedData */
-  const cachedApiData = localStorage.getItem('api-data');
-  const cachedCountries = localStorage.getItem('countries');
-  const cachedGlobalData = localStorage.getItem('global-data');
-  const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
-  const cachedFlags = localStorage.getItem('flags');
-
-  /* local state */
-  const [flags, setFlags] = useState(cachedFlags && JSON.parse(cachedFlags));
-  const [isLoading, setIsLoading] = useState(true);
-  const [apiData, setApiData] = useState(cachedApiData && JSON.parse(cachedApiData));
-  const [countriesData, setCountriesData] = useState(
-    cachedCountries && JSON.parse(cachedCountries)
-  );
-  const [globalData, setGlobalData] = useState(cachedGlobalData && JSON.parse(cachedGlobalData));
-  const [numberOfCountriesData, setNumberOfCountriesData] = useState(
-    cachedNumberOfCountries && JSON.parse(cachedNumberOfCountries)
-  );
 
   /* selectors */
   // TODO change seconds to 1 minute
   const slideIndex = useSelector(getSlideIndex);
+  // const slideIndex = useSelector(getCurrentSlideIndex);
   const countriesSelector = useSelector(getCountries);
-
-  useEffect(() => {
-    const apiExpiration = localStorage.getItem('api-expiration');
-    const isDataExpired = Date.now() >= apiExpiration;
-
-    if (!apiData || isDataExpired) {
-      fetchApi().then(country => {
-        setApiData(country);
-        setGlobalData(country.Global);
-        setCountriesData(country.Countries);
-        setNumberOfCountriesData(country.Countries.length);
-        dispatch(initCountries(countriesData));
-        dispatch(initGlobalData(globalData));
-        dispatch(initNumberOfCountries(numberOfCountriesData));
-      });
-
-      getFlags().then(flags => {
-        setFlags(flags);
-        dispatch(initFlags(flags));
-      });
-    }
-
-    if (apiData) {
-      dispatch(initCountries(countriesData));
-      dispatch(initGlobalData(globalData));
-      dispatch(initNumberOfCountries(numberOfCountriesData));
-      dispatch(initFlags(flags));
-    }
-  }, []);
-
+  const numberOfCountries = useSelector(getNumberOfCountries);
   /**
    * return next day
    * @returns {JSX.Element}
@@ -84,7 +33,7 @@ const Covid19 = () => {
   const NextBtn = () => (
     <button
       onClick={() => {
-        const nextIndex = (slideIndex + 1) % numberOfCountriesData;
+        const nextIndex = (slideIndex + 1) % numberOfCountries;
         dispatch(goNEXT(nextIndex));
       }}
     >
@@ -100,7 +49,7 @@ const Covid19 = () => {
   const PrevBtn = () => (
     <button
       onClick={() => {
-        const prevIndex = slideIndex === 0 ? numberOfCountriesData - 1 : slideIndex - 1;
+        const prevIndex = slideIndex === 0 ? numberOfCountries - 1 : slideIndex - 1;
         dispatch(goPREV(prevIndex));
       }}
     >
@@ -110,7 +59,7 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Content>
-        {isLoading && (
+        {
           <div className="slides">
             <PrevBtn />
             {countriesSelector.map(
@@ -143,7 +92,7 @@ const Covid19 = () => {
             )}
             <NextBtn />
           </div>
-        )}
+        }
       </s.Content>
     </ErrorBoundary>
   );

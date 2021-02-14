@@ -1,19 +1,11 @@
 import React from 'react';
 import { useTilt } from './useTilt';
 import './style.css';
-import s from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentSlideIndex, getFlags, getSlideIndex, isModalShown } from '../../../store';
 import { toggleModal } from '../../../store/actions';
-import styled from 'styled-components';
-
-const Flag = styled.img`
-  position: absolute;
-  top: 15%;
-  border-radius: 6px;
-  max-width: 230px;
-`;
-
+import { ErrorBoundary } from '../../ErrorBoundary';
+import s from './style';
 /**
  * return days for carousel
  * @param offset
@@ -35,41 +27,43 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
   };
 
   return (
-    <div
-      ref={ref}
-      className={'slide'}
-      data-active={active}
-      style={{
-        '--offset': offset,
-        '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
-      }}
-    >
+    <ErrorBoundary>
       <div
-        className=" slideContent "
+        ref={ref}
+        className={'slide'}
+        data-active={active}
         style={{
-          background: 'linear-gradient(0deg, black, #444444)',
+          '--offset': offset,
+          '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
         }}
       >
-        <div className="slideContentInner">
-          <s.DateInfo onClick={toggle}>
-            <Flag src={flags[index].flag} alt={`flag${index}`} />
-            <div style={{ marginBottom: '16px', fontSize: '20px' }}>{country}</div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                position: 'absolute',
-                bottom: '10%',
-              }}
-            >
-              <s.TextInfo>Confirmed {total}</s.TextInfo>
-              <s.TextInfo>Deaths {totaldeaths}</s.TextInfo>
-              <s.TextInfo>Recovered {totalrecovered}</s.TextInfo>
-            </div>{' '}
-          </s.DateInfo>
+        <div
+          className=" slideContent "
+          style={{
+            background: 'linear-gradient(0deg, black, #444444)',
+          }}
+        >
+          <div className="slideContentInner">
+            <s.DateInfo onClick={toggle}>
+              <s.Flag src={flags[index - 1].flag} alt={`flag${index}`} />
+              <div style={{ marginBottom: '16px', fontSize: '20px' }}>{country}</div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'absolute',
+                  bottom: '10%',
+                }}
+              >
+                <s.TextInfo>Confirmed {total}</s.TextInfo>
+                <s.TextInfo>Deaths {totaldeaths}</s.TextInfo>
+                <s.TextInfo>Recovered {totalrecovered}</s.TextInfo>
+              </div>
+            </s.DateInfo>
+          </div>
         </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };
 

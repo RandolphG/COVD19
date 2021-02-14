@@ -10,13 +10,14 @@ import { GlobalInfo } from './GlobalInfo';
 import { CustomSelect } from './CustomSelect';
 
 const Border = styled.div`
-  background-color: red;
   width: 100%;
+  height: 100%;
   position: absolute;
-  z-index: 400;
+  z-index: 700;
   display: flex;
-  top: -200px;
-  right: 400px;
+  justify-content: center;
+  align-items: center;
+  right: 10%;
 `;
 
 /**
@@ -216,7 +217,7 @@ const List = () => {
           <Table />
         </div>
       </div>
-      <Arrow />
+      {/*<Arrow />*/}
     </Border>
   );
 };

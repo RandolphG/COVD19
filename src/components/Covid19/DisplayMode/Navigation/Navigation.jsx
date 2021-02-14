@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import ModeButtons from '../ModeButtons';
 import { setMode, setSelectedMachineRole } from '../../../../store/actions';
-import { getModeIndex } from '../../../../store';
+import { getModeIndex, getRoles } from '../../../../store';
 
 const StyledContent = styled.main`
   width: 90%;
@@ -43,8 +43,9 @@ const StyledHover = styled(motion.div)`
   z-index: 0;
 `;
 
-const Navigation = ({ roles }) => {
+const Navigation = () => {
   const current = useSelector(getModeIndex);
+  const roles = useSelector(getRoles);
   const [modeIndex, setModeIndex] = useState(current);
   const [activeIndex, setActiveIndex] = useState(modeIndex);
   const controls = useAnimation();
@@ -146,16 +147,6 @@ const Navigation = ({ roles }) => {
       </StyledMain>
     </StyledContent>
   );
-};
-
-Navigation.propTypes = {
-  roles: PropTypes.arrayOf(
-    PropTypes.shape({
-      link: PropTypes.element.isRequired,
-      mode: PropTypes.string.isRequired,
-      render: PropTypes.func.isRequired,
-    })
-  ).isRequired,
 };
 
 export default Navigation;

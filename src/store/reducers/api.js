@@ -16,9 +16,8 @@ import {
   SET_MODE_INDEX,
   SET_SELECTED_MACHINE_ROLE,
 } from '../actions';
-import Table from '../../components/Covid19/DisplayMode/Table';
 import Carousel from '../../components/Covid19/DisplayMode/Carousel';
-import List from '../../components/Covid19/DisplayMode/List';
+import { List } from '../../components/Covid19/DisplayMode/List';
 
 export const MODAL_VIEWS = {
   CAROUSEL: {
@@ -44,7 +43,7 @@ const initialState = {
   isDataExpired: false,
   offset: 0,
   showFilterPanel: false,
-  showModal: true,
+  showModal: false,
   displayMode: 'CAROUSEL',
   modeIndex: null,
   views: Object.values(MODAL_VIEWS).map(({ name }, index) => ({
@@ -73,7 +72,7 @@ const initialState = {
       link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
       mode: 'TABLE',
       render: function table() {
-        return <Table />;
+        return <div />;
       },
     },
   ],
