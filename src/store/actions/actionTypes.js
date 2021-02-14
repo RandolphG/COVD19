@@ -17,8 +17,6 @@ export const INIT_NUMBER_OF_COUNTRIES = 'INIT_NUMBER_OF_COUNTRIES';
 
 export const INIT_GLOBAL_DATA = 'INIT_GLOBAL_DATA';
 
-export const INIT_DATE = 'INIT_DATE';
-
 export const INIT_FLAGS = 'INIT_FLAGS';
 
 /* MODE */

@@ -12,13 +12,15 @@ const StyledContent = styled.main`
   width: 90%;
   min-height: fit-content;
   position: absolute;
-  right: 3%;
-  top: 2%;
+  right: -29%;
+  top: 4%;
   z-index: 1000;
 `;
 
 const StyledWrapper = styled.nav`
-  width: 150px;
+  //background: #5f91ff;
+  height: 16px;
+  width: 248px;
 `;
 
 const StyledMain = styled.section`
@@ -35,7 +37,7 @@ const StyledNav = styled.ul`
 const StyledHover = styled(motion.div)`
   height: 80%;
   border-radius: 4px;
-  border: yellow 3px solid;
+  border: yellow 6px solid;
   bottom: 0;
   left: 0;
   position: absolute;

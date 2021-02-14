@@ -16,8 +16,8 @@ import { Menu } from './Menu';
 import DisplayMode from './DisplayMode';
 import Navigation from './DisplayMode/Navigation';
 import ShootingStar from './ShootingStar';
-import { ListPage } from './ListPage';
 import { Sections } from './Sections';
+import { Scroll } from './Scroll';
 
 /**
  * covid data app
@@ -84,16 +84,17 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        {/*<Menu />*/}
+        <Menu />
         {/*<Loader />*/}
-        <ListPage />
+        {/*<ListPage />*/}
         {/*<Sections />*/}
         {/*<TableList />*/}
         {/*<Navigation />*/}
         {/*<DisplayMode />*/}
-        {/*<ShootingStar />*/}
-        {/*<Background />*/}
         {/*<Modal />*/}
+        <Scroll />
+        <ShootingStar />
+        <Background />
       </s.Container>
     </ErrorBoundary>
   );

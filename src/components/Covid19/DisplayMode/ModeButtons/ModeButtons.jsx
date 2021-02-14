@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledLink = styled(({ selected, ...props }) => <Link selected={selected} {...props} />)`
-  background: ${props => props.selected && 'rgb(32,142,176)'};
+  //background: ${props => props.selected && 'rgb(32,142,176)'};
   cursor: pointer;
   display: block;
   padding: 3px;
@@ -17,11 +17,6 @@ const StyledLink = styled(({ selected, ...props }) => <Link selected={selected} 
 const StyledContainer = styled(motion.li)`
   flex: 1;
   z-index: 1;
-`;
-
-const StyledModeTitle = styled.p`
-  text-align: center;
-  padding: 0 4px;
 `;
 
 const upScale = {

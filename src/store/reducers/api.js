@@ -6,18 +6,16 @@ import {
   INIT_GLOBAL_DATA,
   TOGGLE_MODAL,
   SET_SLIDE_INDEX,
-  SHOW_FILTER_PANEL,
   NEXT,
   SET_OFFSET,
   PREV,
-  INIT_DATE,
   INIT_FLAGS,
   SET_CURRENT_MODE,
   SET_MODE_INDEX,
-  SET_SELECTED_MACHINE_ROLE,
 } from '../actions';
 import Carousel from '../../components/Covid19/DisplayMode/Carousel';
 import { List } from '../../components/Covid19/DisplayMode/List';
+import { Scroll } from '../../components/Covid19/Scroll';
 
 export const MODAL_VIEWS = {
   CAROUSEL: {
@@ -55,16 +53,16 @@ const initialState = {
   roles: [
     {
       link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
-      mode: 'CARD',
+      mode: 'CAROUSEL',
       render: function carousel() {
         return <Carousel />;
       },
     },
     {
       link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
-      mode: 'LIST',
+      mode: 'SCROLL',
       render: function list() {
-        return <List />;
+        return <Scroll />;
       },
     },
 
@@ -93,10 +91,6 @@ export const api = createReducer(initialState, {
     ...state,
     globalData: action.payload,
   }),
-  [INIT_DATE]: (state, action) => ({
-    ...state,
-    date: action.payload,
-  }),
   [INIT_FLAGS]: (state, action) => ({
     ...state,
     flags: action.payload,
@@ -120,14 +114,6 @@ export const api = createReducer(initialState, {
   [SET_SLIDE_INDEX]: (state, action) => ({
     ...state,
     slideIndex: action.payload,
-  }),
-  [SHOW_FILTER_PANEL]: (state, action) => ({
-    ...state,
-    showFilterPanel: action.payload,
-  }),
-  [SET_SELECTED_MACHINE_ROLE]: (state, action) => ({
-    ...state,
-    mode: action.payload,
   }),
   [SET_MODE_INDEX]: (state, action) => ({
     ...state,
