@@ -40,11 +40,6 @@ export const setSelectedMachineRole = payload => ({
   payload,
 });
 
-export const setMode = payload => ({
-  type: SET_MODE_INDEX,
-  payload,
-});
-
 export const setCurrentMode = payload => ({
   type: SET_CURRENT_MODE,
   payload,

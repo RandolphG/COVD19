@@ -1,15 +1,10 @@
 import React from 'react';
 import { ErrorBoundary } from '../../../ErrorBoundary';
-import s from '../../style';
+import s from './style';
 import Countries from '../../Countries';
 import { useDispatch, useSelector } from 'react-redux';
 import { goNEXT, goPREV } from '../../../../store/actions';
-import {
-  getCountries,
-  getCurrentSlideIndex,
-  getNumberOfCountries,
-  getSlideIndex,
-} from '../../../../store';
+import { getCountries, getNumberOfCountries, getSlideIndex } from '../../../../store';
 
 /**
  * covid data app
@@ -56,10 +51,11 @@ const Covid19 = () => {
       ‹
     </button>
   );
+
   return (
-    <ErrorBoundary>
-      <s.Content>
-        {
+    <>
+      <ErrorBoundary>
+        <s.Content>
           <div className="slides">
             <PrevBtn />
             {countriesSelector.map(
@@ -77,24 +73,24 @@ const Covid19 = () => {
               ) => {
                 return (
                   <Countries
-                    totalrecovered={TotalRecovered}
-                    newrecovered={NewRecovered}
-                    totaldeaths={TotalDeaths}
-                    deaths={NewDeaths}
-                    country={Country}
-                    total={TotalConfirmed}
-                    newconfirmed={NewConfirmed}
                     key={index}
                     currentIndex={index}
+                    country={Country}
+                    newrecovered={NewRecovered}
+                    newconfirmed={NewConfirmed}
+                    totalrecovered={TotalRecovered}
+                    totaldeaths={TotalDeaths}
+                    deaths={NewDeaths}
+                    total={TotalConfirmed}
                   />
                 );
               }
             )}
             <NextBtn />
           </div>
-        }
-      </s.Content>
-    </ErrorBoundary>
+        </s.Content>
+      </ErrorBoundary>
+    </>
   );
 };
 

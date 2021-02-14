@@ -45,7 +45,7 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
         >
           <div className="slideContentInner">
             <s.DateInfo onClick={toggle}>
-              <s.Flag src={flags[index - 1].flag} alt={`flag${index}`} />
+              {/*<s.Flag src={flags[currentIndex - 1].flag} alt={`flag${currentIndex}`} />*/}
               <div style={{ marginBottom: '16px', fontSize: '20px' }}>{country}</div>
               <div
                 style={{

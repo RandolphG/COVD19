@@ -6,6 +6,7 @@ import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getModeIndex, getRoles } from '../../../store';
 import { setMode, setSelectedMachineRole } from '../../../store/actions';
+import { ErrorBoundary } from '../../ErrorBoundary';
 const screens = [
   {
     title: 'Carousel',
@@ -52,33 +53,35 @@ export default function App() {
   };
 
   return (
-    <Border>
-      <AnimateSharedLayout>
-        <ol style={{ transform: 'translateZ(0)' }}>
-          {screens.map(({ title, color, mode }, i) => (
-            <motion.li
-              animate
-              key={i}
-              className={`title ${i === selected && 'selected'}`}
-              style={{ color: i === selected ? color : '#333' }}
-              onClick={() => {
-                console.log(`CLICKED!!`);
-                onModeSelected(mode);
-                setSelected(i);
-              }}
-            >
-              {i === selected && (
-                <motion.div
-                  layoutId="underline"
-                  className="underline"
-                  style={{ backgroundColor: color }}
-                />
-              )}
-              {title.toUpperCase()}
-            </motion.li>
-          ))}
-        </ol>
-      </AnimateSharedLayout>
-    </Border>
+    <ErrorBoundary>
+      <Border>
+        <AnimateSharedLayout>
+          <ol style={{ transform: 'translateZ(0)' }}>
+            {screens.map(({ title, color, mode }, i) => (
+              <motion.li
+                animate
+                key={i}
+                className={`title ${i === selected && 'selected'}`}
+                style={{ color: i === selected ? color : '#333' }}
+                onClick={() => {
+                  console.log(`CLICKED!!`);
+                  onModeSelected(mode);
+                  setSelected(i);
+                }}
+              >
+                {i === selected && (
+                  <motion.div
+                    layoutId="underline"
+                    className="underline"
+                    style={{ backgroundColor: color }}
+                  />
+                )}
+                {title.toUpperCase()}
+              </motion.li>
+            ))}
+          </ol>
+        </AnimateSharedLayout>
+      </Border>
+    </ErrorBoundary>
   );
 }

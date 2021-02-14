@@ -14,24 +14,22 @@ import {
   SET_MODE_INDEX,
 } from '../actions';
 import Carousel from '../../components/Covid19/DisplayMode/Carousel';
-import { List } from '../../components/Covid19/DisplayMode/List';
 import { Scroll } from '../../components/Covid19/Scroll';
 
 export const MODAL_VIEWS = {
   CAROUSEL: {
     name: 'CAROUSEL',
   },
-  TABLE: {
-    name: 'TABLE',
+  SCROLL: {
+    name: 'SCROLL',
   },
-  LIST: {
-    name: 'LIST',
+  INFO: {
+    name: 'INFO',
   },
 };
 
 const initialState = {
   today: new Date(),
-  date: '',
   countries: [],
   flags: [],
   numberOfCountries: null,
@@ -40,36 +38,30 @@ const initialState = {
   dataExpiration: '',
   isDataExpired: false,
   offset: 0,
-  showFilterPanel: false,
   showModal: false,
-  displayMode: 'CAROUSEL',
-  modeIndex: null,
+  displayMode: 'SCROLL',
   views: Object.values(MODAL_VIEWS).map(({ name }, index) => ({
     name,
     value: index,
   })),
-  current: MODAL_VIEWS.CAROUSEL.name,
-  default: MODAL_VIEWS.CAROUSEL.name,
+  current: MODAL_VIEWS.SCROLL.name,
+  default: MODAL_VIEWS.SCROLL.name,
   roles: [
     {
-      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
+      mode: 'SCROLL',
+      render: function scroll() {
+        return <Scroll />;
+      },
+    },
+    {
       mode: 'CAROUSEL',
       render: function carousel() {
         return <Carousel />;
       },
     },
     {
-      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
-      mode: 'SCROLL',
-      render: function list() {
-        return <Scroll />;
-      },
-    },
-
-    {
-      link: <span style={{ background: 'yellow', height: '16px', width: '16px' }} />,
-      mode: 'TABLE',
-      render: function table() {
+      mode: 'INFO',
+      render: function info() {
         return <div />;
       },
     },

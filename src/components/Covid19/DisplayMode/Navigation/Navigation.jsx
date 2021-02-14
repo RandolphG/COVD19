@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ModeButtons from '../ModeButtons';
 import { setMode, setSelectedMachineRole } from '../../../../store/actions';
 import { getModeIndex, getRoles } from '../../../../store';
+import { ErrorBoundary } from '../../../ErrorBoundary';
 
 const StyledContent = styled.main`
   width: 90%;
@@ -124,30 +125,32 @@ const Navigation = () => {
   }, [activeIndex, dispatch, restraints, shiftIndex]);
 
   return (
-    <StyledContent>
-      <StyledMain>
-        <StyledWrapper>
-          <StyledNav>
-            {roles &&
-              roles.map(({ mode, link }, index) => (
-                <ModeButtons
-                  key={mode}
-                  mode={mode}
-                  link={link}
-                  current={index}
-                  ref={modeRefs[mode]}
-                  modeIndex={modeIndex}
-                  activeIndex={activeIndex}
-                  setActiveIndex={setActiveIndex}
-                  onModeSelect={onModeSelected}
-                  onClick={() => onModeSelected(mode)}
-                />
-              ))}
-            <StyledHover initial={initial} animate={controls} style={selectorFrame} />
-          </StyledNav>
-        </StyledWrapper>
-      </StyledMain>
-    </StyledContent>
+    <ErrorBoundary>
+      <StyledContent>
+        <StyledMain>
+          <StyledWrapper>
+            <StyledNav>
+              {roles &&
+                roles.map(({ mode, link }, index) => (
+                  <ModeButtons
+                    key={mode}
+                    mode={mode}
+                    link={link}
+                    current={index}
+                    ref={modeRefs[mode]}
+                    modeIndex={modeIndex}
+                    activeIndex={activeIndex}
+                    setActiveIndex={setActiveIndex}
+                    onModeSelect={onModeSelected}
+                    onClick={() => onModeSelected(mode)}
+                  />
+                ))}
+              <StyledHover initial={initial} animate={controls} style={selectorFrame} />
+            </StyledNav>
+          </StyledWrapper>
+        </StyledMain>
+      </StyledContent>
+    </ErrorBoundary>
   );
 };
 

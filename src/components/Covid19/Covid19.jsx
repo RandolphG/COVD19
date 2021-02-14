@@ -8,16 +8,13 @@ import {
   initGlobalData,
   initNumberOfCountries,
 } from '../../store/actions';
+import { getFlags, fetchApi } from '../../services/getCountrySummary';
+import DisplayMode from './DisplayMode';
 import { Background } from './Background';
 import Modal from './Modal/Modal';
-import { getFlags, fetchApi } from '../../services/getCountrySummary';
 import Loader from './Loader';
-import { Menu } from './Menu';
-import DisplayMode from './DisplayMode';
-import Navigation from './DisplayMode/Navigation';
 import ShootingStar from './ShootingStar';
 import { Sections } from './Sections';
-import { Scroll } from './Scroll';
 
 /**
  * covid data app
@@ -84,17 +81,7 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        <Menu />
-        {/*<Loader />*/}
-        {/*<ListPage />*/}
-        {/*<Sections />*/}
-        {/*<TableList />*/}
-        {/*<Navigation />*/}
-        {/*<DisplayMode />*/}
-        {/*<Modal />*/}
-        <Scroll />
-        <ShootingStar />
-        <Background />
+        <DisplayMode />
       </s.Container>
     </ErrorBoundary>
   );
