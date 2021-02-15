@@ -48,6 +48,8 @@ const Scroll = () => {
 
   const CountryInfo = ({ CountryCode, Country, index }) => {
     const currentFlag = flags && flags[index] && flags[index].flag;
+    const singleFlag = flags.filter(C => C.flag === flags[index]);
+    console.log(`CountryCode, Country, index -----> `, CountryCode, Country, index);
     return (
       <>
         <span style={{ marginRight: '16px' }}> {CountryCode}</span>
@@ -78,17 +80,7 @@ const Scroll = () => {
             }}
           >
             {countries.map(
-              (
-                { CountryCode, Country, Slug, TotalDeaths, TotalConfirmed, TotalRecovered },
-                index
-              ) => {
-                console.log(
-                  `index, TotalDeaths, TotalConfirmed, TotalRecovered -----> `,
-                  index,
-                  TotalDeaths,
-                  TotalConfirmed,
-                  TotalRecovered
-                );
+              ({ CountryCode, Country, TotalDeaths, TotalConfirmed, TotalRecovered }, index) => {
                 return (
                   <motion.div
                     style={{

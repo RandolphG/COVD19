@@ -2,7 +2,7 @@ import React from 'react';
 import { useTilt } from './useTilt';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSlideIndex, isModalShown } from '../../../store';
-import { toggleModal } from '../../../store/actions';
+import { toggleModal } from '../../../store';
 import { ErrorBoundary } from '../../ErrorBoundary';
 import Info from './Info';
 import './style.css';

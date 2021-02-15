@@ -74,10 +74,10 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        {/*<Carousel />*/}
-        <DisplayMode />
-        {/*<ShootingStar />*/}
-        {/*<BackgroundAnimation />*/}
+        <Carousel />
+        {/*<DisplayMode />*/}
+        <ShootingStar />
+        <BackgroundAnimation />
         <Modal />
       </s.Container>
     </ErrorBoundary>

@@ -3,7 +3,7 @@ import { ErrorBoundary } from '../../../ErrorBoundary';
 import s from './style';
 import Countries from '../../Countries';
 import { useDispatch, useSelector } from 'react-redux';
-import { goNEXT, goPREV } from '../../../../store/actions';
+import { goNEXT, goPREV } from '../../../../store';
 import { getCountries, getNumberOfCountries, getSlideIndex } from '../../../../store';
 
 /**
@@ -23,6 +23,7 @@ const Covid19 = () => {
    */
   const NextBtn = () => (
     <button
+      style={{ zIndex: 700 }}
       onClick={() => {
         const nextIndex = (currentIndex + 1) % numberOfCountries;
         dispatch(goNEXT(nextIndex));
@@ -39,6 +40,7 @@ const Covid19 = () => {
    */
   const PrevBtn = () => (
     <button
+      style={{ zIndex: 700 }}
       onClick={() => {
         const prevIndex = currentIndex === 0 ? numberOfCountries - 1 : currentIndex - 1;
         dispatch(goPREV(prevIndex));
