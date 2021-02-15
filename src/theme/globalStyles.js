@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   @import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
 
   body {
@@ -14,3 +14,4 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 `;
+export default GlobalStyle;

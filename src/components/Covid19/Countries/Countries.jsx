@@ -4,16 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSlideIndex, isModalShown } from '../../../store';
 import { toggleModal } from '../../../store/actions';
 import { ErrorBoundary } from '../../ErrorBoundary';
-import './style.css';
-
 import Info from './Info';
+import './style.css';
 /**
  * return days for carousel
  * @param offset
  * @returns {JSX.Element}
  * @constructor
  */
-const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }) => {
+const Countries = ({ currentIndex, country, confirmed, deaths, recovered }) => {
   const slideIndex = useSelector(getSlideIndex);
   let offset = slideIndex - currentIndex;
   const active = offset === 0 ? true : null;
@@ -22,7 +21,6 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
   const isModalHidden = useSelector(isModalShown);
 
   const toggle = () => {
-    console.log(`CLICKED`);
     dispatch(toggleModal(!isModalHidden));
   };
 
@@ -43,9 +41,9 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
               toggle={toggle}
               currentIndex={currentIndex}
               country={country}
-              deaths={totaldeaths}
-              confirmed={total}
-              recovered={totalrecovered}
+              deaths={deaths}
+              confirmed={confirmed}
+              recovered={recovered}
             />
           </div>
         </div>

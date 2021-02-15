@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ErrorBoundary } from '../ErrorBoundary';
 import s from './style';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   initCountries,
   initFlags,
@@ -30,14 +30,9 @@ const Covid19 = () => {
   const cachedGlobalData = localStorage.getItem('global-data');
   const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
   const cachedFlags = localStorage.getItem('flags');
-  const cachedFilteredFlags = localStorage.getItem('filtered-flags');
 
   /* local state */
   const [flags, setFlags] = useState(cachedFlags && JSON.parse(cachedFlags));
-  const [isLoading, setIsLoading] = useState(true);
-  const [filteredFlagsData, setFilteredFlagsData] = useState(
-    cachedFilteredFlags && JSON.parse(cachedFilteredFlags)
-  );
   const [apiData, setApiData] = useState(cachedApiData && JSON.parse(cachedApiData));
   const [countriesData, setCountriesData] = useState(
     cachedCountries && JSON.parse(cachedCountries)
@@ -69,9 +64,6 @@ const Covid19 = () => {
     }
 
     if (apiData) {
-      // getFlags().then(flags => {
-      //   dispatch(initFlags(flags));
-      // });
       dispatch(initFlags(flags));
       dispatch(initCountries(countriesData));
       dispatch(initGlobalData(globalData));

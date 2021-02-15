@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { getCountries, getCurrentSlideIndex, getFlags, getSlideIndex } from '../../../store';
+import { getCountries, getFlags } from '../../../store';
 import { ErrorBoundary } from '../../ErrorBoundary';
-import s from './style';
+import style from './style';
 
 const height = 45;
 const padding = 10;
@@ -15,7 +15,6 @@ const size = 550;
  * @constructor
  */
 const Scroll = () => {
-  const index = useSelector(getSlideIndex);
   const countries = useSelector(getCountries);
   const scrollY = useMotionValue(0);
   const flags = useSelector(getFlags);
@@ -33,89 +32,98 @@ const Scroll = () => {
   );
 
   const Header = () => (
-    <s.Header>
+    <style.Header>
       <span>Country </span> <span>Recovered</span> <span>Deaths</span>
       <span>Confirmed</span>
-    </s.Header>
+    </style.Header>
   );
 
   const Stats = ({ TotalDeaths, TotalConfirmed, TotalRecovered }) => (
-    <s.Stats>
+    <style.Stats>
       <span style={{ marginRight: '2%', width: '15%' }}>{TotalRecovered || 0}</span>
       <span style={{ marginRight: '2%', width: '15%' }}>{TotalDeaths || 0}</span>
       <span style={{ marginRight: '2%', width: '15%' }}> {TotalConfirmed || 0}</span>
-    </s.Stats>
+    </style.Stats>
   );
 
-  const CountryInfo = ({ CountryCode, Country, index }) => (
-    <>
-      <span style={{ marginRight: '16px' }}> {CountryCode}</span>
-      <span style={{ marginRight: '16px' }}>
-        {/*<s.Flag src={flags[index-1].flag} alt={`flags${index}`} />*/}
-      </span>
-      <span style={{ marginRight: '16px' }}>{Country}</span>{' '}
-    </>
-  );
-
-  // console.log(`FLAGS --->`, flags);
+  const CountryInfo = ({ CountryCode, Country, index }) => {
+    const currentFlag = flags && flags[index] && flags[index].flag;
+    return (
+      <>
+        <span style={{ marginRight: '16px' }}> {CountryCode}</span>
+        <span style={{ marginRight: '16px' }}>
+          {/*<style.Flag src={flags[index-1].flag} alt={`flags${index}`} />*/}
+        </span>
+        <span style={{ marginRight: '16px' }}>{Country}</span>{' '}
+      </>
+    );
+  };
 
   // const single = countries.filter(C => C.Country === 'Uzbekistan');
   return (
     <ErrorBoundary>
-      <Header />
-      <s.Border whileTap={{ cursor: 'grabbing' }}>
-        <motion.div
-          style={{
-            width: 600,
-            height: getHeight(countries),
-            y: scrollY,
-          }}
-          drag="y"
-          dragConstraints={{
-            top: -getHeight(countries) + size,
-            bottom: 0,
-          }}
-        >
-          {countries.map(
-            (
-              { CountryCode, Country, Slug, TotalDeaths, TotalConfirmed, TotalRecovered },
-              index
-            ) => {
-              console.log(`LOGGED INFO----------> `, TotalDeaths, TotalConfirmed, TotalRecovered);
-              return (
-                <motion.div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    alignItems: 'center',
-                    fontSize: '16px',
-                    color: 'black',
-                    width: '100%',
-                    height: height,
-                    borderRadius: '4px',
-                    backgroundColor: '#fff',
-                    position: 'absolute',
-                    paddingLeft: '16px',
-                    paddingRight: '16px',
-                    top: (height + padding) * index,
-                  }}
-                  key={index}
-                >
-                  <s.Row>
-                    <CountryInfo Country={Country} CountryCode={CountryCode} index={index} />
-                    <Stats
-                      TotalDeaths={TotalDeaths}
-                      TotalConfirmed={TotalConfirmed}
-                      TotalRecovered={TotalRecovered}
-                    />
-                  </s.Row>
-                </motion.div>
-              );
-            }
-          )}
-        </motion.div>
-      </s.Border>
-      <s.ProgressBar width={width} />
+      <style.Border whileTap={{ cursor: 'grabbing' }}>
+        <Header />
+        <style.Table>
+          <motion.div
+            style={{
+              width: 600,
+              height: getHeight(countries),
+              y: scrollY,
+            }}
+            drag="y"
+            dragConstraints={{
+              top: -getHeight(countries) + size,
+              bottom: 0,
+            }}
+          >
+            {countries.map(
+              (
+                { CountryCode, Country, Slug, TotalDeaths, TotalConfirmed, TotalRecovered },
+                index
+              ) => {
+                console.log(
+                  `index, TotalDeaths, TotalConfirmed, TotalRecovered -----> `,
+                  index,
+                  TotalDeaths,
+                  TotalConfirmed,
+                  TotalRecovered
+                );
+                return (
+                  <motion.div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'flex-end',
+                      alignItems: 'center',
+                      fontSize: '16px',
+                      color: 'black',
+                      width: '100%',
+                      height: height,
+                      borderRadius: '4px',
+                      backgroundColor: '#fff',
+                      position: 'absolute',
+                      paddingLeft: '16px',
+                      paddingRight: '16px',
+                      top: (height + padding) * index,
+                    }}
+                    key={index}
+                  >
+                    <style.Row>
+                      <CountryInfo Country={Country} CountryCode={CountryCode} index={index} />
+                      <Stats
+                        TotalDeaths={TotalDeaths}
+                        TotalConfirmed={TotalConfirmed}
+                        TotalRecovered={TotalRecovered}
+                      />
+                    </style.Row>
+                  </motion.div>
+                );
+              }
+            )}
+          </motion.div>
+        </style.Table>
+        <style.ProgressBar width={width} />
+      </style.Border>
     </ErrorBoundary>
   );
 };

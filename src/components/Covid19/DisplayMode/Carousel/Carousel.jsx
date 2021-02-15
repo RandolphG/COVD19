@@ -13,11 +13,7 @@ import { getCountries, getNumberOfCountries, getSlideIndex } from '../../../../s
  */
 const Covid19 = () => {
   const dispatch = useDispatch();
-
-  /* selectors */
-  // TODO change seconds to 1 minute
-  const slideIndex = useSelector(getSlideIndex);
-  // const slideIndex = useSelector(getCurrentSlideIndex);
+  const currentIndex = useSelector(getSlideIndex);
   const countriesSelector = useSelector(getCountries);
   const numberOfCountries = useSelector(getNumberOfCountries);
   /**
@@ -28,7 +24,7 @@ const Covid19 = () => {
   const NextBtn = () => (
     <button
       onClick={() => {
-        const nextIndex = (slideIndex + 1) % numberOfCountries;
+        const nextIndex = (currentIndex + 1) % numberOfCountries;
         dispatch(goNEXT(nextIndex));
       }}
     >
@@ -44,15 +40,13 @@ const Covid19 = () => {
   const PrevBtn = () => (
     <button
       onClick={() => {
-        const prevIndex = slideIndex === 0 ? numberOfCountries - 1 : slideIndex - 1;
+        const prevIndex = currentIndex === 0 ? numberOfCountries - 1 : currentIndex - 1;
         dispatch(goPREV(prevIndex));
       }}
     >
       ‹
     </button>
   );
-
-  // const single = countriesSelector.filter(C => C.Country === 'Uzbekistan');
 
   return (
     <>
@@ -78,12 +72,9 @@ const Covid19 = () => {
                     key={index}
                     currentIndex={index}
                     country={Country}
-                    // newrecovered={NewRecovered}
-                    // newconfirmed={NewConfirmed}
-                    totalrecovered={TotalRecovered}
-                    totaldeaths={TotalDeaths}
-                    // deaths={NewDeaths}
-                    total={TotalConfirmed}
+                    recovered={TotalRecovered}
+                    deaths={TotalDeaths}
+                    confirmed={TotalConfirmed}
                   />
                 );
               }
