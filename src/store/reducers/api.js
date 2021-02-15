@@ -39,13 +39,13 @@ const initialState = {
   isDataExpired: false,
   offset: 0,
   showModal: false,
-  displayMode: 'SCROLL',
+  displayMode: 'CAROUSEL',
   views: Object.values(MODAL_VIEWS).map(({ name }, index) => ({
     name,
     value: index,
   })),
-  current: MODAL_VIEWS.SCROLL.name,
-  default: MODAL_VIEWS.SCROLL.name,
+  current: MODAL_VIEWS.CAROUSEL.name,
+  default: MODAL_VIEWS.CAROUSEL.name,
   roles: [
     {
       mode: 'SCROLL',

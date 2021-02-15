@@ -10,11 +10,12 @@ import {
 } from '../../store/actions';
 import { getFlags, fetchApi } from '../../services/getCountrySummary';
 import DisplayMode from './DisplayMode';
-import { Background } from './Background';
+import { BackgroundAnimation } from './Background';
 import Modal from './Modal/Modal';
 import Loader from './Loader';
 import ShootingStar from './ShootingStar';
 import { Sections } from './Sections';
+import Carousel from './DisplayMode/Carousel';
 
 /**
  * covid data app
@@ -81,7 +82,10 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        <DisplayMode />
+        <Carousel />
+        {/*<DisplayMode />*/}
+        {/*<ShootingStar />*/}
+        {/*<BackgroundAnimation />*/}
       </s.Container>
     </ErrorBoundary>
   );

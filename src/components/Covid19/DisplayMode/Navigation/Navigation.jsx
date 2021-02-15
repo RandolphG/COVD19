@@ -1,5 +1,4 @@
 import { motion, useAnimation } from 'framer-motion';
-import PropTypes from 'prop-types';
 import React, { createRef, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -19,7 +18,6 @@ const StyledContent = styled.main`
 `;
 
 const StyledWrapper = styled.nav`
-  //background: #5f91ff;
   height: 16px;
   width: 248px;
 `;

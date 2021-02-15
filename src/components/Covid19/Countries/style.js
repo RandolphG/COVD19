@@ -7,4 +7,20 @@ const Flag = styled.img`
   max-width: 230px;
 `;
 
-export default { Flag };
+const TextInfo = styled.p`
+  font-size: 1rem;
+`;
+
+const DateInfo = styled.div`
+  font-size: 1rem;
+`;
+
+const Content = styled.div`
+  height: 100%;
+  width: 100%;
+  background: #5f91ff;
+  display: flex;
+  flex-direction: column;
+`;
+
+export default { Flag, TextInfo, DateInfo, Content };

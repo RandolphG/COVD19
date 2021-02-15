@@ -52,6 +52,8 @@ const Covid19 = () => {
     </button>
   );
 
+  // const single = countriesSelector.filter(C => C.Country === 'Uzbekistan');
+
   return (
     <>
       <ErrorBoundary>
@@ -76,11 +78,11 @@ const Covid19 = () => {
                     key={index}
                     currentIndex={index}
                     country={Country}
-                    newrecovered={NewRecovered}
-                    newconfirmed={NewConfirmed}
+                    // newrecovered={NewRecovered}
+                    // newconfirmed={NewConfirmed}
                     totalrecovered={TotalRecovered}
                     totaldeaths={TotalDeaths}
-                    deaths={NewDeaths}
+                    // deaths={NewDeaths}
                     total={TotalConfirmed}
                   />
                 );

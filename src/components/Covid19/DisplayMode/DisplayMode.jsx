@@ -30,6 +30,7 @@ const ModeSelections = () => {
   const screens = useSelector(getSceens);
   const countries = useSelector(getCountries);
   const [filtered, setFiltered] = useState([]);
+
   const home = () => (screens[0] ? `/${screens[0].mode}` : '/');
 
   const onChange = e => {
@@ -47,6 +48,8 @@ const ModeSelections = () => {
     setFiltered([...copy]);
   };
 
+  console.log(`MODE----------------->`, screens);
+
   return (
     <ErrorBoundary>
       <StyledModalContent key="role">
@@ -59,14 +62,21 @@ const ModeSelections = () => {
             border: '4px solid black',
             borderRadius: '5px',
             right: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            paddingTop: '16px',
           }}
         >
-          OPTIONS
-          <span>Sort</span>
-          <span>Sort</span>
-          {/*          <div key={index}>
+          <span>OPTIONS</span>
+          <span>SORT</span>
+          <span>FILTER</span>
+          {/*
+           <div key={index}>
             <input data-idx={index} onChange={onChange} type={'checkbox'} value={agency.selected} />
-          </div>*/}
+          </div>
+          */}
         </div>
         <AnimatePresence exitBeforeEnter initial={false}>
           <Switch location={location} key={location.pathname}>

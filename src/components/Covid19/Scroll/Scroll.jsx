@@ -16,7 +16,7 @@ const size = 550;
  */
 const Scroll = () => {
   const index = useSelector(getSlideIndex);
-  const country = useSelector(getCountries);
+  const countries = useSelector(getCountries);
   const scrollY = useMotionValue(0);
   const flags = useSelector(getFlags);
 
@@ -28,7 +28,7 @@ const Scroll = () => {
 
   const width = useTransform(
     scrollY,
-    [0, -getHeight(country) + size],
+    [0, -getHeight(countries) + size],
     ['calc(0% - 0px)', 'calc(100% - 40px)']
   );
 
@@ -41,9 +41,9 @@ const Scroll = () => {
 
   const Stats = ({ TotalDeaths, TotalConfirmed, TotalRecovered }) => (
     <s.Stats>
-      <span style={{ marginRight: '16px', width: '15%' }}>{TotalRecovered}</span>
-      <span style={{ marginRight: '16px', width: '15%' }}>{TotalDeaths}</span>
-      <span style={{ marginRight: '16px', width: '15%' }}> {TotalConfirmed}</span>
+      <span style={{ marginRight: '2%', width: '15%' }}>{TotalRecovered || 0}</span>
+      <span style={{ marginRight: '2%', width: '15%' }}>{TotalDeaths || 0}</span>
+      <span style={{ marginRight: '2%', width: '15%' }}> {TotalConfirmed || 0}</span>
     </s.Stats>
   );
 
@@ -57,8 +57,9 @@ const Scroll = () => {
     </>
   );
 
-  console.log(`FLAGS --->`, flags);
+  // console.log(`FLAGS --->`, flags);
 
+  // const single = countries.filter(C => C.Country === 'Uzbekistan');
   return (
     <ErrorBoundary>
       <Header />
@@ -66,20 +67,21 @@ const Scroll = () => {
         <motion.div
           style={{
             width: 600,
-            height: getHeight(country),
+            height: getHeight(countries),
             y: scrollY,
           }}
           drag="y"
           dragConstraints={{
-            top: -getHeight(country) + size,
+            top: -getHeight(countries) + size,
             bottom: 0,
           }}
         >
-          {country.map(
+          {countries.map(
             (
               { CountryCode, Country, Slug, TotalDeaths, TotalConfirmed, TotalRecovered },
               index
             ) => {
+              console.log(`LOGGED INFO----------> `, TotalDeaths, TotalConfirmed, TotalRecovered);
               return (
                 <motion.div
                   style={{
@@ -103,7 +105,7 @@ const Scroll = () => {
                     <CountryInfo Country={Country} CountryCode={CountryCode} index={index} />
                     <Stats
                       TotalDeaths={TotalDeaths}
-                      TotalConfirme={TotalConfirmed}
+                      TotalConfirmed={TotalConfirmed}
                       TotalRecovered={TotalRecovered}
                     />
                   </s.Row>

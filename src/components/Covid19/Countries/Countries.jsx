@@ -26,6 +26,9 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
     dispatch(toggleModal(!isModalHidden));
   };
 
+  const currentFlag = flags && flags[currentIndex - 1] && flags[currentIndex - 1].flag;
+
+  console.log(` total, totaldeaths, totalrecovered `, total, totaldeaths, totalrecovered);
   return (
     <ErrorBoundary>
       <div
@@ -45,7 +48,7 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
         >
           <div className="slideContentInner">
             <s.DateInfo onClick={toggle}>
-              {/*<s.Flag src={flags[currentIndex - 1].flag} alt={`flag${currentIndex}`} />*/}
+              {currentFlag && <s.Flag src={currentFlag} alt={`flag-${currentIndex}`} />}
               <div style={{ marginBottom: '16px', fontSize: '20px' }}>{country}</div>
               <div
                 style={{
