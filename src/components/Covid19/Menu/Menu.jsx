@@ -4,7 +4,7 @@ import { motion, AnimateSharedLayout, useAnimation } from 'framer-motion';
 import styled from 'styled-components';
 import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getModeIndex, getRoles } from '../../../store';
+import { getModeIndex, getSceens } from '../../../store';
 import { setMode, setSelectedMachineRole } from '../../../store/actions';
 import { ErrorBoundary } from '../../ErrorBoundary';
 const screens = [
@@ -14,9 +14,9 @@ const screens = [
     mode: 'CAROUSEL',
   },
   {
-    title: 'List',
+    title: 'Scroll',
     color: '#ff0055',
-    mode: 'LIST',
+    mode: 'SCROLL',
   },
   {
     title: 'info',
@@ -43,7 +43,7 @@ const Border = styled.div`
 export default function App() {
   const [selected, setSelected] = useState(0);
   const current = useSelector(getModeIndex);
-  const roles = useSelector(getRoles);
+  const roles = useSelector(getSceens);
   const [modeIndex, setModeIndex] = useState(current);
   const controls = useAnimation();
   const dispatch = useDispatch();

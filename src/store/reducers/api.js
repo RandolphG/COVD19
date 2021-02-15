@@ -35,7 +35,7 @@ const initialState = {
   numberOfCountries: null,
   globalData: {},
   slideIndex: 0,
-  dataExpiration: '',
+  Expiration: '',
   isDataExpired: false,
   offset: 0,
   showModal: false,

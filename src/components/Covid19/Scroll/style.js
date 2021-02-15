@@ -2,8 +2,27 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+const Flag = styled.img`
+  position: absolute;
+  top: 15%;
+  border-radius: 6px;
+  max-width: 230px;
+`;
+
+const ProgressBar = styled(motion.div)`
+  z-index: 700;
+  width: ${props => props.width};
+  height: 12px;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  position: absolute;
+  border: solid black 2px;
+  bottom: -20%;
+  left: 20px;
+`;
+
 const Border = styled(motion.div)`
-  z-index: 900;
+  z-index: 300;
   width: 600px;
   height: 275px;
   border-radius: 10px;
@@ -28,23 +47,24 @@ const Header = styled.div`
   color: white;
   display: flex;
   flex-direction: row;
-  justify-content: spa;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
   height: 30px;
   width: 600px;
   padding-left: 32px;
   padding-right: 32px;
-  z-index: 400;
-  top: 15%;
+  z-index: 500;
+  top: -18%;
   text-transform: uppercase;
 `;
 
 const Stats = styled.div`
+  width: 45%;
   background: blueviolet;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-around;
 `;
 
-export default { Border, Row, Header, Stats };
+export default { Border, Row, Header, Stats, ProgressBar, Flag };

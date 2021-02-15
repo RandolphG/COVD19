@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import ModeButtons from '../ModeButtons';
 import { setMode, setSelectedMachineRole } from '../../../../store/actions';
-import { getModeIndex, getRoles } from '../../../../store';
+import { getModeIndex, getSceens } from '../../../../store';
 import { ErrorBoundary } from '../../../ErrorBoundary';
 
 const StyledContent = styled.main`
@@ -48,7 +48,7 @@ const StyledHover = styled(motion.div)`
 
 const Navigation = () => {
   const current = useSelector(getModeIndex);
-  const roles = useSelector(getRoles);
+  const roles = useSelector(getSceens);
   const [modeIndex, setModeIndex] = useState(current);
   const [activeIndex, setActiveIndex] = useState(modeIndex);
   const controls = useAnimation();

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { getCountries } from '../../../store';
+import { getCountries, getCurrentSlideIndex, getFlags, getSlideIndex } from '../../../store';
 import { ErrorBoundary } from '../../ErrorBoundary';
 import s from './style';
 
@@ -15,8 +15,10 @@ const size = 550;
  * @constructor
  */
 const Scroll = () => {
+  const index = useSelector(getSlideIndex);
   const country = useSelector(getCountries);
   const scrollY = useMotionValue(0);
+  const flags = useSelector(getFlags);
 
   const getHeight = items => {
     const totalHeight = items.length * height;
@@ -39,19 +41,23 @@ const Scroll = () => {
 
   const Stats = ({ TotalDeaths, TotalConfirmed, TotalRecovered }) => (
     <s.Stats>
-      <span style={{ marginRight: '16px' }}>{TotalRecovered}</span>
-      <span style={{ marginRight: '16px' }}>{TotalDeaths}</span>
-      <span style={{ marginRight: '16px' }}> {TotalConfirmed}</span>
+      <span style={{ marginRight: '16px', width: '15%' }}>{TotalRecovered}</span>
+      <span style={{ marginRight: '16px', width: '15%' }}>{TotalDeaths}</span>
+      <span style={{ marginRight: '16px', width: '15%' }}> {TotalConfirmed}</span>
     </s.Stats>
   );
 
-  const CountryInfo = ({ CountryCode, flag, Country }) => (
+  const CountryInfo = ({ CountryCode, Country, index }) => (
     <>
       <span style={{ marginRight: '16px' }}> {CountryCode}</span>
-      <span style={{ marginRight: '16px' }}>{flag}</span>
+      <span style={{ marginRight: '16px' }}>
+        {/*<s.Flag src={flags[index-1].flag} alt={`flags${index}`} />*/}
+      </span>
       <span style={{ marginRight: '16px' }}>{Country}</span>{' '}
     </>
   );
+
+  console.log(`FLAGS --->`, flags);
 
   return (
     <ErrorBoundary>
@@ -78,11 +84,11 @@ const Scroll = () => {
                 <motion.div
                   style={{
                     display: 'flex',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'flex-end',
                     alignItems: 'center',
                     fontSize: '16px',
                     color: 'black',
-                    width: 600,
+                    width: '100%',
                     height: height,
                     borderRadius: '4px',
                     backgroundColor: '#fff',
@@ -94,7 +100,7 @@ const Scroll = () => {
                   key={index}
                 >
                   <s.Row>
-                    <CountryInfo Country={Country} CountryCode={CountryCode} />
+                    <CountryInfo Country={Country} CountryCode={CountryCode} index={index} />
                     <Stats
                       TotalDeaths={TotalDeaths}
                       TotalConfirme={TotalConfirmed}
@@ -107,19 +113,7 @@ const Scroll = () => {
           )}
         </motion.div>
       </s.Border>
-      <motion.div
-        style={{
-          zIndex: 500,
-          width: width,
-          height: '12px',
-          borderRadius: '8px',
-          background: 'linear-gradient(120deg, #f6d365 0%, #fda085 100%)',
-          position: 'absolute',
-          border: 'solid black 2px',
-          bottom: 20,
-          left: 20,
-        }}
-      />
+      <s.ProgressBar width={width} />
     </ErrorBoundary>
   );
 };

@@ -34,4 +34,4 @@ export const isModeClient = createSelector(getMachineMode, mode => mode === 'Cli
 
 export const getModeIndex = createSelector(getApiData, api => api.modeIndex);
 
-export const getRoles = createSelector(getApiData, api => api.roles);
+export const getSceens = createSelector(getApiData, api => api.roles);
