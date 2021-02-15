@@ -69,9 +69,9 @@ const Covid19 = () => {
     }
 
     if (apiData) {
-      getFlags().then(flags => {
-        dispatch(initFlags(flags));
-      });
+      // getFlags().then(flags => {
+      //   dispatch(initFlags(flags));
+      // });
       dispatch(initFlags(flags));
       dispatch(initCountries(countriesData));
       dispatch(initGlobalData(globalData));
@@ -82,10 +82,11 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        <Carousel />
-        {/*<DisplayMode />*/}
+        {/*<Carousel />*/}
+        <DisplayMode />
         {/*<ShootingStar />*/}
         {/*<BackgroundAnimation />*/}
+        <Modal />
       </s.Container>
     </ErrorBoundary>
   );

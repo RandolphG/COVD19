@@ -1,11 +1,12 @@
 import React from 'react';
 import { useTilt } from './useTilt';
-import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentSlideIndex, getFlags, getSlideIndex, isModalShown } from '../../../store';
+import { getSlideIndex, isModalShown } from '../../../store';
 import { toggleModal } from '../../../store/actions';
 import { ErrorBoundary } from '../../ErrorBoundary';
-import s from './style';
+import './style.css';
+
+import Info from './Info';
 /**
  * return days for carousel
  * @param offset
@@ -19,16 +20,12 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
   const ref = useTilt(active);
   const dispatch = useDispatch();
   const isModalHidden = useSelector(isModalShown);
-  const index = useSelector(getCurrentSlideIndex);
-  const flags = useSelector(getFlags);
 
   const toggle = () => {
+    console.log(`CLICKED`);
     dispatch(toggleModal(!isModalHidden));
   };
 
-  const currentFlag = flags && flags[currentIndex - 1] && flags[currentIndex - 1].flag;
-
-  console.log(` total, totaldeaths, totalrecovered `, total, totaldeaths, totalrecovered);
   return (
     <ErrorBoundary>
       <div
@@ -40,29 +37,16 @@ const Countries = ({ currentIndex, country, total, totaldeaths, totalrecovered }
           '--dir': offset === 0 ? 0 : offset > 0 ? 1 : -1,
         }}
       >
-        <div
-          className=" slideContent "
-          style={{
-            background: 'linear-gradient(0deg, black, #444444)',
-          }}
-        >
+        <div className=" slideContent ">
           <div className="slideContentInner">
-            <s.DateInfo onClick={toggle}>
-              {currentFlag && <s.Flag src={currentFlag} alt={`flag-${currentIndex}`} />}
-              <div style={{ marginBottom: '16px', fontSize: '20px' }}>{country}</div>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  position: 'absolute',
-                  bottom: '10%',
-                }}
-              >
-                <s.TextInfo>Confirmed {total}</s.TextInfo>
-                <s.TextInfo>Deaths {totaldeaths}</s.TextInfo>
-                <s.TextInfo>Recovered {totalrecovered}</s.TextInfo>
-              </div>
-            </s.DateInfo>
+            <Info
+              toggle={toggle}
+              currentIndex={currentIndex}
+              country={country}
+              deaths={totaldeaths}
+              confirmed={total}
+              recovered={totalrecovered}
+            />
           </div>
         </div>
       </div>

@@ -23,4 +23,13 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
-export default { Flag, TextInfo, DateInfo, Content };
+const Stats = styled.div`
+  height: 100%;
+  width: 100%;
+  background: #5f91ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
+
+export default { Flag, TextInfo, DateInfo, Content, Stats };
