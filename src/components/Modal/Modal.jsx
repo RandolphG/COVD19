@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { isModalShown } from '../../../store';
-import { toggleModal } from '../../../store';
+import { isModalShown } from '../../store';
+import { toggleModal } from '../../store';
 import { Flag } from './Flag';
 
 const backdrop = {

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { ErrorBoundary } from '../../ErrorBoundary';
+import { ErrorBoundary } from '../ErrorBoundary';
 import './style.css';
 import style from './style';
 

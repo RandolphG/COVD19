@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Link, Route, Switch, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getCountries } from '../../../store';
-import { ErrorBoundary } from '../../ErrorBoundary';
+import { getCountries } from '../../store';
+import { ErrorBoundary } from '../ErrorBoundary';
 import { Menu } from '../Menu';
 import { Scroll } from './Scroll';
 import Carousel from './Carousel';

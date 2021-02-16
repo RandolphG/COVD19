@@ -1,8 +1,8 @@
 import React from 'react';
-import { ErrorBoundary } from '../../../ErrorBoundary';
+import { ErrorBoundary } from '../../ErrorBoundary';
 import { useDispatch, useSelector } from 'react-redux';
-import { goNEXT, goPREV } from '../../../../store';
-import { getCountries, getNumberOfCountries, getSlideIndex } from '../../../../store';
+import { goNEXT, goPREV } from '../../../store';
+import { getCountries, getNumberOfCountries, getSlideIndex } from '../../../store';
 import style from './style';
 import { Cards } from '../../Cards';
 
