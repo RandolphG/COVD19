@@ -18,12 +18,20 @@ const Options = () => {
   };
 
   const NavLinks = () => (
-    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '1vh' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        marginBottom: '1vh',
+        height: '7vh',
+        justifyContent: 'space-between',
+      }}
+    >
       <Link style={{ color: '#0099ff', textDecoration: 'none' }} to={`/SCROLL`}>
-        View #1
+        Table
       </Link>
       <Link style={{ color: '#ff0055', textDecoration: 'none' }} to={`/CAROUSEL`}>
-        View #2
+        Carousel
       </Link>
     </div>
   );
@@ -31,7 +39,8 @@ const Options = () => {
   return (
     <style.Border>
       <NavLinks />
-      <span>SEARCH</span>
+      {/*
+       <span>SEARCH</span>
       <span
         style={{
           fontSize: '1rem',
@@ -52,7 +61,7 @@ const Options = () => {
           onChange={e => onChange(e)}
         />
       </span>
-      <span>SORT</span>
+      <span>SORT</span>*/}
     </style.Border>
   );
 };

@@ -4,12 +4,10 @@ import styled from 'styled-components';
 const Border = styled.div`
   overflow: hidden;
   z-index: 500;
-  background: indigo;
   color: white;
   position: absolute;
-  height: 100vh;
+  height: 90vh;
   width: 105px;
-  border: 4px solid black;
   border-radius: 5px;
   right: 10px;
   display: flex;

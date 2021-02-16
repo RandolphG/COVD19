@@ -47,7 +47,6 @@ const Scroll = () => {
           fontWeight: 400,
           display: 'flex',
           justifyContent: 'space-between',
-          background: 'blue',
         }}
       >
         <span>Recovered</span> <span>Deaths</span>
@@ -66,12 +65,10 @@ const Scroll = () => {
 
   const CountryInfo = ({ CountryCode, Country, index }) => {
     const currentFlag = flags && flags[index] && flags[index].flag;
-    const singleFlag = flags.filter(C => C.flag === flags[index]);
 
     return (
       <div
         style={{
-          background: 'black',
           width: '100%',
           display: 'flex',
           flexDirection: 'row',
@@ -79,12 +76,11 @@ const Scroll = () => {
           alignItems: 'center',
         }}
       >
-        <div style={{ background: 'orange', display: 'flex', flexDirection: 'row', width: '100%' }}>
-          <span style={{ marginRight: '16px', background: 'cadetblue' }}> {CountryCode}</span>
+        <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
+          <span style={{ marginRight: '16px' }}> {CountryCode}</span>
           <span
             style={{
               width: '10vw',
-              background: 'mediumpurple',
               display: 'flex',
               flexDirection: 'row',
             }}
@@ -93,7 +89,6 @@ const Scroll = () => {
             <span
               style={{
                 display: 'inline',
-                background: 'coral',
                 marginLeft: '16px',
                 whiteSpace: 'nowrap',
               }}

@@ -18,7 +18,6 @@ const Border = styled(motion.div)`
 const Header = styled.div`
   font-size: 20px;
   color: white;
-  background: seagreen;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -41,7 +40,6 @@ const Table = styled.div`
 
 const Row = styled.div`
   &:last-child {
-    background: olive;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -60,7 +58,6 @@ const Stats = styled.div`
   font-weight: 400;
   padding-left: 8px;
   padding-right: 8px;
-  background: blueviolet;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
