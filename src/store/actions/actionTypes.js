@@ -1,10 +1,6 @@
-export const SHOW_FILTER_PANEL = 'SHOW_FILTER_PANEL';
-
 export const NEXT = 'NEXT';
 
 export const PREV = 'PREV';
-
-export const SET_SLIDE_INDEX = 'SET_SLIDE_INDEX';
 
 export const SET_OFFSET = 'SET_OFFSET';
 
@@ -15,13 +11,7 @@ export const INIT_COUNTRIES = 'INIT_COUNTRY_SUMMARIES';
 
 export const INIT_NUMBER_OF_COUNTRIES = 'INIT_NUMBER_OF_COUNTRIES';
 
-export const INIT_GLOBAL_DATA = 'INIT_GLOBAL_DATA';
-
 export const INIT_FLAGS = 'INIT_FLAGS';
 
 /* MODE */
 export const SET_SELECTED_MACHINE_ROLE = 'SET_SELECTED_MACHINE_ROLE';
-
-export const SET_MODE_INDEX = 'SET_MODE_INDEX';
-
-export const SET_CURRENT_MODE = 'SET_CURRENT_MODE';

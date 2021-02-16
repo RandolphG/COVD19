@@ -9,6 +9,12 @@ const height = 45;
 const padding = 10;
 const size = 550;
 
+const AnimationSettings = {
+  transition: { duration: 0.5 },
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
+};
 /**
  * table & list view of covid api data
  * @returns {JSX.Element}
@@ -103,7 +109,7 @@ const Scroll = () => {
   // const single = countries.filter(C => C.Country === 'Uzbekistan');
   return (
     <ErrorBoundary>
-      <style.Border whileTap={{ cursor: 'grabbing' }}>
+      <style.Border {...AnimationSettings} whileTap={{ cursor: 'grabbing' }}>
         <Header />
         <style.Table>
           <motion.div

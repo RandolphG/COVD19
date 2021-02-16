@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import style from './style';
 import { useSelector } from 'react-redux';
-import { getFlags } from '../../../store';
+import { getFlags } from '../../../../../store';
 /**
  * information
  * @param currentIndex

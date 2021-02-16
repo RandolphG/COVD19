@@ -1,10 +1,10 @@
 import React from 'react';
 import { ErrorBoundary } from '../../ErrorBoundary';
-import { useDispatch, useSelector } from 'react-redux';
-import { goNEXT, goPREV } from '../../../store';
-import { getCountries, getNumberOfCountries, getSlideIndex } from '../../../store';
+import { useSelector } from 'react-redux';
+import { getCountries } from '../../../store';
 import style from './style';
-import { Cards } from '../../Cards';
+import { Cards } from './Cards';
+import { NextBtn, PrevBtn } from './NavigationButtons';
 
 const AnimationSettings = {
   transition: { duration: 0.5 },
@@ -13,62 +13,13 @@ const AnimationSettings = {
   exit: { opacity: 0, y: -10 },
 };
 
-const transition = { duration: 0.5, ease: 'easeInOut' };
-
-const postVariants = {
-  initial: { y: 100, opacity: 0 },
-  enter: { y: 0, opacity: 1, transition },
-  exit: { y: -100, opacity: 0, transition },
-};
-
-const postPreviewVariants = {
-  initial: { x: '100%', opacity: 0 },
-  enter: { x: 0, opacity: 1, transition },
-  exit: { x: '-100%', opacity: 0, transition },
-};
 /**
  * covid data app
  * @returns {JSX.Element}
  * @constructor
  */
-const Covid19 = () => {
-  const dispatch = useDispatch();
-  const currentIndex = useSelector(getSlideIndex);
+const Carousel = () => {
   const countriesSelector = useSelector(getCountries);
-  const numberOfCountries = useSelector(getNumberOfCountries);
-  /**
-   * return next day
-   * @returns {JSX.Element}
-   * @constructor
-   */
-  const NextBtn = () => (
-    <button
-      style={{ zIndex: 700 }}
-      onClick={() => {
-        const nextIndex = (currentIndex + 1) % numberOfCountries;
-        dispatch(goNEXT(nextIndex));
-      }}
-    >
-      ›
-    </button>
-  );
-
-  /**
-   * return previous day
-   * @returns {JSX.Element}
-   * @constructor
-   */
-  const PrevBtn = () => (
-    <button
-      style={{ zIndex: 700 }}
-      onClick={() => {
-        const prevIndex = currentIndex === 0 ? numberOfCountries - 1 : currentIndex - 1;
-        dispatch(goPREV(prevIndex));
-      }}
-    >
-      ‹
-    </button>
-  );
 
   return (
     <ErrorBoundary>
@@ -107,4 +58,4 @@ const Covid19 = () => {
   );
 };
 
-export default Covid19;
+export default Carousel;

@@ -28,9 +28,6 @@ export const getNumberOfCountries = createSelector(getApiData, api => api.number
 export const getFlags = createSelector(getApiData, api => api && api.flags);
 
 /* <------------------------ NAVIGATION ---------------------------> */
-export const getMachineMode = createSelector(getApiData, api => api.mode);
-
-export const isModeClient = createSelector(getMachineMode, mode => mode === 'Client');
 
 export const getModeIndex = createSelector(getApiData, api => api.modeIndex);
 
