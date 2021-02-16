@@ -17,18 +17,17 @@ $ cd project
 $ npm i
 $ npm run electron 
 ```
-## Features
-- 😎 COVID 19 Api : https://covid19api.com/ 
-- 😎 CDN of Country Flags : https://flags.fmcdn.net/
-- 😎 Styled Components & Custom css
-- 😎 electron
-- 😎 react router
-- 😎 redux
-- 😎 reselect
-- 😎 framer-motion
+### Features
+- COVID 19 Api : https://covid19api.com/ 
+- CDN of Country Flags : https://flags.fmcdn.net/
+- Styled Components & Custom css
+- electron
+- react router
+- redux
+- reselect
+- framer-motion
 
-### requirements ( **Note**: Api was incomplete )
-
+### requirements 
 -  api : https://documenter.getpostman.com/view/10808728/SzS8rjbc
 - graph of COVID infected for a particular country
 - list of COVID infected per country
