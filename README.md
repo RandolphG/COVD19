@@ -35,8 +35,6 @@ $ npm run electron
 - filtering
 - sorting
 - searching
-- something else for skills perposes
+- extra features
 - redux store
-- emphasis on the structure of the project
 - ES6 code
-- host on Github
