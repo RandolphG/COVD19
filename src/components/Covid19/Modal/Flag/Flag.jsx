@@ -1,9 +1,9 @@
 import React from 'react';
 import './style.css';
-import { ErrorBoundary } from '../../ErrorBoundary';
+import { ErrorBoundary } from '../../../ErrorBoundary';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { getCurrentSlideIndex, getFlags } from '../../../store';
+import { getCurrentSlideIndex, getFlags } from '../../../../store';
 
 const Border = styled.div`
   height: 100%;

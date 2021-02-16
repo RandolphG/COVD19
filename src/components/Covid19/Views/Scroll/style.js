@@ -10,7 +10,7 @@ const Border = styled(motion.div)`
   width: 600px;
   height: 100%;
   overflow: hidden;
-  position: relative;
+  position: absolute;
   transform: translateZ(0);
   cursor: grab;
 `;
@@ -23,15 +23,15 @@ const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  position: absolute;
   height: 30px;
   width: 100%;
   padding-left: 16px;
   padding-right: 16px;
   text-transform: uppercase;
+  top: 10vh;
 `;
 const Table = styled.div`
-  //background: green;
   height: 70%;
   overflow: hidden;
   position: absolute;

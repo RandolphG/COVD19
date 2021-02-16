@@ -1,20 +1,15 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Link,
-  Redirect,
-  Route,
-  Switch,
-  useLocation,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Modes from './Modes';
-import { getCountries, getSceens } from '../../../store';
+import { getCountries } from '../../../store';
 import { ErrorBoundary } from '../../ErrorBoundary';
 import { Menu } from '../Menu';
+import { Scroll } from './Scroll';
+import Carousel from './Carousel';
+import { AnimatedBackground } from '../Background';
 
 export const Border = styled(motion.div)`
   box-sizing: border-box;
@@ -26,18 +21,11 @@ export const Border = styled(motion.div)`
   align-items: center;
 `;
 
-const fadeOut = {
-  opacity: 0,
-};
-
 const ModeSelections = () => {
   const [input, setInput] = useState('');
   const location = useLocation();
-  const screens = useSelector(getSceens);
   const countries = useSelector(getCountries);
   const [filtered, setFiltered] = useState([]);
-
-  const home = () => (screens[0] ? `/${screens[0].mode}` : '/');
 
   const onChange = e => {
     e.preventDefault();
@@ -51,6 +39,7 @@ const ModeSelections = () => {
   const Options = () => (
     <div
       style={{
+        overflow: 'hidden',
         zIndex: 500,
         background: 'indigo',
         color: 'white',
@@ -106,17 +95,9 @@ const ModeSelections = () => {
       <Route>
         <AnimatePresence exitBeforeEnter initial={false}>
           <Switch location={location} key={location.pathname}>
-            {screens.map(({ mode, render }) => (
-              <Route
-                key={`selected-${mode}`}
-                path={`/${mode}`}
-                render={() => <Modes render={render} />}
-              />
-            ))}
-            <Route
-              key="redirection"
-              render={() => <motion.div exit={fadeOut}>{<Redirect to={home()} />}</motion.div>}
-            />
+            <Route key={`selected-carousel`} exact path={`/CAROUSEL`} render={() => <Carousel />} />
+            } />
+            <Route key={`selected-scroll`} exact path={`/SCROLL`} render={() => <Scroll />} />} />
           </Switch>
         </AnimatePresence>
       </Route>
@@ -131,6 +112,7 @@ const ModeSelections = () => {
         <Menu />
         <Options />
         <View />
+        <AnimatedBackground />
       </Border>
     </ErrorBoundary>
   );

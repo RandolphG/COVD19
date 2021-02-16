@@ -12,7 +12,7 @@ import './style.css';
  * @returns {JSX.Element}
  * @constructor
  */
-const Countries = ({ currentIndex, country, confirmed, deaths, recovered }) => {
+const Cards = ({ currentIndex, country, confirmed, deaths, recovered }) => {
   const slideIndex = useSelector(getSlideIndex);
   let offset = slideIndex - currentIndex;
   const active = offset === 0 ? true : null;
@@ -52,4 +52,4 @@ const Countries = ({ currentIndex, country, confirmed, deaths, recovered }) => {
   );
 };
 
-export default Countries;
+export default Cards;

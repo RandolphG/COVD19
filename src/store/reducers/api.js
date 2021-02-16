@@ -10,24 +10,8 @@ import {
   SET_OFFSET,
   PREV,
   INIT_FLAGS,
-  SET_CURRENT_MODE,
   SET_MODE_INDEX,
-  SET_SELECTED_MACHINE_ROLE,
 } from '../actions';
-import Carousel from '../../components/Covid19/DisplayMode/Carousel';
-import { Scroll } from '../../components/Covid19/Scroll';
-
-export const MODAL_VIEWS = {
-  CAROUSEL: {
-    name: 'CAROUSEL',
-  },
-  SCROLL: {
-    name: 'SCROLL',
-  },
-  INFO: {
-    name: 'INFO',
-  },
-};
 
 const initialState = {
   today: new Date(),
@@ -41,35 +25,7 @@ const initialState = {
   offset: 0,
   showModal: false,
   displayMode: 'CAROUSEL',
-  views: Object.values(MODAL_VIEWS).map(({ name }, index) => ({
-    name,
-    value: index,
-  })),
-  current: MODAL_VIEWS.CAROUSEL.name,
-  default: MODAL_VIEWS.CAROUSEL.name,
-  roles: [
-    {
-      mode: 'SCROLL',
-      render: function scroll() {
-        return <Scroll />;
-      },
-    },
-    {
-      mode: 'CAROUSEL',
-      render: function carousel() {
-        return <Carousel />;
-      },
-    },
-    {
-      mode: 'INFO',
-      render: function info() {
-        return <div />;
-      },
-    },
-  ],
 };
-
-const isStepValid = payload => Object.keys(MODAL_VIEWS).includes(payload);
 
 export const api = createReducer(initialState, {
   [INIT_COUNTRIES]: (state, action) => ({
@@ -111,13 +67,5 @@ export const api = createReducer(initialState, {
   [SET_MODE_INDEX]: (state, action) => ({
     ...state,
     modeIndex: action.payload,
-  }),
-  [SET_CURRENT_MODE]: (state, action) => ({
-    ...state,
-    current: action.payload && isStepValid(action.payload) ? action.payload : state.default,
-  }),
-  [SET_SELECTED_MACHINE_ROLE]: (state, action) => ({
-    ...state,
-    current: action.payload,
   }),
 });

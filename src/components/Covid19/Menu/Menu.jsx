@@ -2,11 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { useDispatch } from 'react-redux';
-import { setSelectedMachineRole } from '../../../store';
 import { ErrorBoundary } from '../../ErrorBoundary';
 import './style.css';
 import style from './style';
-import { Link } from 'react-router-dom';
 
 /* menu items */
 const views = [
@@ -31,10 +29,6 @@ const Menu = () => {
   const [selected, setSelected] = useState(0);
   const dispatch = useDispatch();
 
-  const onModeSelected = mode => {
-    dispatch(setSelectedMachineRole(mode));
-  };
-
   return (
     <ErrorBoundary>
       <style.Border>
@@ -47,8 +41,6 @@ const Menu = () => {
                 className={`title ${i === selected && 'selected'}`}
                 style={{ color: i === selected ? color : '#333' }}
                 onClick={() => {
-                  console.log(`CLICKED!!`);
-                  onModeSelected(mode);
                   setSelected(i);
                 }}
               >

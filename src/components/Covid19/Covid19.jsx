@@ -4,10 +4,8 @@ import s from './style';
 import { useDispatch } from 'react-redux';
 import { initCountries, initFlags, initNumberOfCountries } from '../../store';
 import { getFlags, fetchApi } from '../../services/getCountrySummary';
-import DisplayMode from './DisplayMode';
-import { BackgroundAnimation } from './Background';
-import Modal from './Modal/Modal';
-import Loader from './Loader';
+import Views from './Views';
+import { AnimatedBackground } from './Background';
 
 /**
  * covid data app
@@ -61,7 +59,7 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        <DisplayMode />
+        <Views />
       </s.Container>
     </ErrorBoundary>
   );

@@ -6,7 +6,7 @@ import './style.css';
  * @returns {JSX.Element}
  * @constructor
  */
-const Background = () => {
+const AnimatedBackground = () => {
   return (
     <>
       <div className="header">
@@ -40,4 +40,4 @@ const Background = () => {
   );
 };
 
-export default Background;
+export default AnimatedBackground;
