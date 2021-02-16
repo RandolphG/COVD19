@@ -2,20 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { ErrorBoundary } from '../ErrorBoundary';
 import s from './style';
 import { useDispatch } from 'react-redux';
-import {
-  initCountries,
-  initFlags,
-  initGlobalData,
-  initNumberOfCountries,
-} from '../../store/actions';
+import { initCountries, initFlags, initNumberOfCountries } from '../../store';
 import { getFlags, fetchApi } from '../../services/getCountrySummary';
 import DisplayMode from './DisplayMode';
 import { BackgroundAnimation } from './Background';
 import Modal from './Modal/Modal';
 import Loader from './Loader';
-import ShootingStar from './ShootingStar';
-import { Sections } from './Sections';
-import Carousel from './DisplayMode/Carousel';
 
 /**
  * covid data app
@@ -27,7 +19,6 @@ const Covid19 = () => {
   /* cachedData */
   const cachedApiData = localStorage.getItem('api-data');
   const cachedCountries = localStorage.getItem('countries');
-  const cachedGlobalData = localStorage.getItem('global-data');
   const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
   const cachedFlags = localStorage.getItem('flags');
 
@@ -37,7 +28,6 @@ const Covid19 = () => {
   const [countriesData, setCountriesData] = useState(
     cachedCountries && JSON.parse(cachedCountries)
   );
-  const [globalData, setGlobalData] = useState(cachedGlobalData && JSON.parse(cachedGlobalData));
   const [numberOfCountriesData, setNumberOfCountriesData] = useState(
     cachedNumberOfCountries && JSON.parse(cachedNumberOfCountries)
   );
@@ -49,11 +39,9 @@ const Covid19 = () => {
     if (!apiData || isDataExpired) {
       fetchApi().then(country => {
         setApiData(country);
-        setGlobalData(country.Global);
         setCountriesData(country.Countries);
         setNumberOfCountriesData(country.Countries.length);
         dispatch(initCountries(countriesData));
-        dispatch(initGlobalData(globalData));
         dispatch(initNumberOfCountries(numberOfCountriesData));
       });
 
@@ -66,7 +54,6 @@ const Covid19 = () => {
     if (apiData) {
       dispatch(initFlags(flags));
       dispatch(initCountries(countriesData));
-      dispatch(initGlobalData(globalData));
       dispatch(initNumberOfCountries(numberOfCountriesData));
     }
   }, []);
@@ -74,11 +61,7 @@ const Covid19 = () => {
   return (
     <ErrorBoundary>
       <s.Container>
-        <Carousel />
-        {/*<DisplayMode />*/}
-        <ShootingStar />
-        <BackgroundAnimation />
-        <Modal />
+        <DisplayMode />
       </s.Container>
     </ErrorBoundary>
   );

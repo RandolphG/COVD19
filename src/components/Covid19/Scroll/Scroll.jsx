@@ -33,8 +33,20 @@ const Scroll = () => {
 
   const Header = () => (
     <style.Header>
-      <span>Country </span> <span>Recovered</span> <span>Deaths</span>
-      <span>Confirmed</span>
+      <span style={{ left: '4vw' }}>Country </span>
+      <span
+        style={{
+          width: '27vw',
+          fontSize: '15px',
+          fontWeight: 400,
+          display: 'flex',
+          justifyContent: 'space-between',
+          background: 'blue',
+        }}
+      >
+        <span>Recovered</span> <span>Deaths</span>
+        <span>Confirmed</span>
+      </span>
     </style.Header>
   );
 
@@ -49,15 +61,42 @@ const Scroll = () => {
   const CountryInfo = ({ CountryCode, Country, index }) => {
     const currentFlag = flags && flags[index] && flags[index].flag;
     const singleFlag = flags.filter(C => C.flag === flags[index]);
-    console.log(`CountryCode, Country, index -----> `, CountryCode, Country, index);
+
     return (
-      <>
-        <span style={{ marginRight: '16px' }}> {CountryCode}</span>
-        <span style={{ marginRight: '16px' }}>
-          {/*<style.Flag src={flags[index-1].flag} alt={`flags${index}`} />*/}
-        </span>
-        <span style={{ marginRight: '16px' }}>{Country}</span>{' '}
-      </>
+      <div
+        style={{
+          background: 'black',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <div style={{ background: 'orange', display: 'flex', flexDirection: 'row', width: '100%' }}>
+          <span style={{ marginRight: '16px', background: 'cadetblue' }}> {CountryCode}</span>
+          <span
+            style={{
+              width: '10vw',
+              background: 'mediumpurple',
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
+            <style.Flag src={currentFlag} alt={`flag-${Country}`} />
+            <span
+              style={{
+                display: 'inline',
+                background: 'coral',
+                marginLeft: '16px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {Country}
+            </span>
+          </span>
+        </div>
+      </div>
     );
   };
 

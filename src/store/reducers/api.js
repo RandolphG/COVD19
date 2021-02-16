@@ -12,6 +12,7 @@ import {
   INIT_FLAGS,
   SET_CURRENT_MODE,
   SET_MODE_INDEX,
+  SET_SELECTED_MACHINE_ROLE,
 } from '../actions';
 import Carousel from '../../components/Covid19/DisplayMode/Carousel';
 import { Scroll } from '../../components/Covid19/Scroll';
@@ -114,5 +115,9 @@ export const api = createReducer(initialState, {
   [SET_CURRENT_MODE]: (state, action) => ({
     ...state,
     current: action.payload && isStepValid(action.payload) ? action.payload : state.default,
+  }),
+  [SET_SELECTED_MACHINE_ROLE]: (state, action) => ({
+    ...state,
+    current: action.payload,
   }),
 });

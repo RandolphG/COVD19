@@ -13,10 +13,9 @@ const AnimationSettings = {
 
 const Border = styled(motion.div)`
   box-sizing: border-box;
-  background: black;
   height: 80%;
   position: absolute;
-  bottom: 10vh;
+  bottom: 5vh;
   display: flex;
 `;
 const Modes = ({ render }) => (

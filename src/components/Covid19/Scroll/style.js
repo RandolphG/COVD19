@@ -16,9 +16,9 @@ const Border = styled(motion.div)`
 `;
 
 const Header = styled.div`
-  background: #4a89dc;
   font-size: 20px;
   color: white;
+  background: seagreen;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,13 +26,13 @@ const Header = styled.div`
   position: relative;
   height: 30px;
   width: 100%;
-  padding-left: 32px;
-  padding-right: 32px;
+  padding-left: 16px;
+  padding-right: 16px;
   text-transform: uppercase;
 `;
 const Table = styled.div`
-  background: green;
-  height: 60%;
+  //background: green;
+  height: 70%;
   overflow: hidden;
   position: absolute;
   bottom: 10vh;
@@ -50,18 +50,20 @@ const Row = styled.div`
 `;
 
 const Flag = styled.img`
-  position: absolute;
-  top: 15%;
-  border-radius: 6px;
+  height: 16px;
+  border-radius: 3px;
   max-width: 230px;
 `;
 
 const Stats = styled.div`
-  width: 45%;
+  width: 85%;
+  font-weight: 400;
+  padding-left: 8px;
+  padding-right: 8px;
   background: blueviolet;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const ProgressBar = styled(motion.div)`
