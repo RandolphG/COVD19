@@ -1,6 +1,6 @@
 import { combineEpics } from 'redux-observable';
-// import getApiDataEpic from './getApiDataEpic';
+import { initializeFlagsEpic, initializeLoadingEpic } from './getCountriesEpic';
 
-const rootEpics = combineEpics();
+const rootEpics = combineEpics(initializeLoadingEpic, initializeFlagsEpic);
 
 export default rootEpics;

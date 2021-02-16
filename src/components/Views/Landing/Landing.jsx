@@ -1,39 +1,51 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Redirect } from 'react-router';
 import { Parallax } from 'react-spring/renderprops-addons';
-import { Page01 } from './Page01';
-import { Page02 } from './Page02';
+import { Page01, Page02 } from './sections';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { initializeLoading } from '../../../store';
 import './style.css';
 
-import { useHistory } from 'react-router-dom';
-
 const Landing = () => {
+  const dispatch = useDispatch();
   let parallax = useRef(null);
   const history = useHistory();
 
-  const [isLoading, setIsLoading] = useState(false);
+  //TODO use into its own useEffect (sideEffect)
+  /* cachedData */
+  const cachedApiData = localStorage.getItem('api-data');
+  const cachedCountries = localStorage.getItem('countries');
+  const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
+  const cachedFlags = localStorage.getItem('flags');
+  const apiExpiration = localStorage.getItem('api-expiration');
+  const [flags, setFlags] = useState(cachedFlags && JSON.parse(cachedFlags));
+  const [apiData, setApiData] = useState(cachedApiData && JSON.parse(cachedApiData));
+  const [countriesData, setCountriesData] = useState(
+    cachedCountries && JSON.parse(cachedCountries)
+  );
+  const [numberOfCountriesData, setNumberOfCountriesData] = useState(
+    cachedNumberOfCountries && JSON.parse(cachedNumberOfCountries)
+  );
 
   const onLoad = () => {
-    console.log(`REDIRECTED!!!`);
     history.push('/CAROUSEL');
-    setIsLoading(true);
   };
 
+  /* data fetching */
   useEffect(() => {
-    setTimeout(() => {
-      parallax.scrollTo(1);
-    }, 2500);
+    dispatch(initializeLoading());
+  }, []);
 
+  /* intro animation */
+  useEffect(() => {
     const timer = setTimeout(() => {
-      onLoad();
-    }, 4000);
-
+      parallax && parallax.scrollTo(1);
+    }, 2500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {isLoading && <Redirect to="/CAROUSEL" />}(
       <Parallax
         className="container"
         ref={ref => (parallax = ref)}
@@ -50,7 +62,6 @@ const Landing = () => {
         />
         <Page02 offset={1} caption="second stats" first="table & list" second="framer motion" />
       </Parallax>
-      )}
     </>
   );
 };

@@ -10,21 +10,21 @@ const ShootingStar = () => {
         <div className="shooting_star">V</div>
         <div className="shooting_star">I</div>
         <div className="shooting_star">D</div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
-        <div className="shooting_star"></div>
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
+        <div className="shooting_star" />
       </div>
     </div>
   );
