@@ -2,20 +2,21 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import {
   INIT_COUNTRIES_SUCCESS,
-  INIT_NUMBER_OF_COUNTRIES,
+  INIT_NUMBER_OF_COUNTRIES_SUCCESS,
   TOGGLE_MODAL,
   NEXT,
   SET_OFFSET,
   PREV,
-  INIT_FLAGS,
   INITIALIZE_LOADING,
   INIT_COUNTRIES_FAILURE,
   INIT_FLAGS_FAILURE,
   INIT_FLAGS_SUCCESS,
+  INIT_NUMBER_OF_COUNTRIES_FAILURE,
 } from '../actions';
 
 const initialState = {
-  today: new Date(),
+  cachedCountries: false,
+  cachedFlags: false,
   countries: [],
   flags: [],
   loading: false,
@@ -50,9 +51,14 @@ export const api = createReducer(initialState, {
     loading: true,
     error: null,
   }),
-  [INIT_NUMBER_OF_COUNTRIES]: (state, action) => ({
+  [INIT_NUMBER_OF_COUNTRIES_SUCCESS]: (state, action) => ({
     ...state,
     numberOfCountries: action.payload,
+  }),
+  [INIT_NUMBER_OF_COUNTRIES_FAILURE]: (state, action) => ({
+    ...state,
+    error: action.payload.error,
+    numberOfCountries: null,
   }),
   [INIT_COUNTRIES_SUCCESS]: (state, action) => ({
     ...state,
@@ -63,10 +69,6 @@ export const api = createReducer(initialState, {
     loading: false,
     error: action.payload.error,
     countries: [],
-  }),
-  [INIT_FLAGS]: (state, action) => ({
-    ...state,
-    flags: action.payload,
   }),
   [INIT_FLAGS_SUCCESS]: (state, action) => ({
     ...state,

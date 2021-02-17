@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
-import { useDispatch } from 'react-redux';
 import { ErrorBoundary } from '../ErrorBoundary';
 import './style.css';
 import style from './style';
+import { push } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
 
 /* menu items */
 const views = [
@@ -26,21 +27,27 @@ const views = [
  * @constructor
  */
 const Menu = () => {
-  const [selected, setSelected] = useState(0);
   const dispatch = useDispatch();
+  const [selected, setSelected] = useState(0);
+
+  const redirect = ({ path }) => dispatch => {
+    console.log(`path`, path);
+    dispatch(push(`/${path}`));
+  };
 
   return (
     <ErrorBoundary>
       <style.Border>
         <AnimateSharedLayout>
           <ol style={{ transform: 'translateZ(0)' }}>
-            {views.map(({ title, color, mode }, i) => (
+            {views.map(({ title, color, path }, i) => (
               <motion.li
                 animate
                 key={i}
                 className={`title ${i === selected && 'selected'}`}
                 style={{ color: i === selected ? color : '#333' }}
                 onClick={() => {
+                  redirect(path);
                   setSelected(i);
                 }}
               >

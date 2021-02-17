@@ -22,7 +22,7 @@ $ npm run electron
 - CDN of Country Flags : https://flags.fmcdn.net/
 - Styled Components & Custom css
 - electron
-- react router
+- connected react router
 - redux
 - reselect
 - framer-motion

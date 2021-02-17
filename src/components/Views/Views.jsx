@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { history } from '../../store/store';
+import { ConnectedRouter } from 'connected-react-router';
+import { Route, Switch } from 'react-router-dom';
 import { ErrorBoundary } from '../ErrorBoundary';
 import { Menu } from '../Menu';
 import { Scroll } from './Scroll';
@@ -25,7 +27,7 @@ const Views = () => {
   return (
     <ErrorBoundary>
       <Border key="role">
-        <Router>
+        <ConnectedRouter history={history}>
           <Menu />
           <Options />
           <Route
@@ -40,7 +42,7 @@ const Views = () => {
               </AnimatePresence>
             )}
           />
-        </Router>
+        </ConnectedRouter>
         <AnimatedBackground />
         <Modal />
       </Border>

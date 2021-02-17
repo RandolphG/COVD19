@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { ParallaxLayer } from 'react-spring/renderprops-addons';
-import s from './style';
+import style from './style';
 
 /**
  * intro page #02
@@ -14,28 +14,30 @@ import s from './style';
 const Page02 = ({ offset, caption, first, second }) => (
   <Fragment>
     <ParallaxLayer offset={offset} speed={0.2}>
-      <s.SlopeBegin />
+      <style.SlopeBegin />
     </ParallaxLayer>
 
     <ParallaxLayer offset={offset} speed={-0.2}>
-      <s.SlopeEnd />
+      <style.SlopeEnd />
     </ParallaxLayer>
 
     <ParallaxLayer offset={offset} speed={0.3}>
-      <s.Numbers>
+      <style.Numbers>
         <span>0{offset + 1}</span>
-      </s.Numbers>
+      </style.Numbers>
     </ParallaxLayer>
 
     <ParallaxLayer offset={offset} speed={0.4}>
-      <s.Header>
-        <span>
-          <p style={{ fontSize: 15 }}>{caption}</p>
-          <s.Stripe />
-          <p>{first}</p>
-          <p>{second}</p>
-        </span>
-      </s.Header>
+      <style.Header>
+        <style.Description>
+          <style.Title>{caption}</style.Title>
+          <style.Stripe />
+          <style.Text>
+            <style.TextA>{first}</style.TextA>
+            <style.TextA>{second}</style.TextA>
+          </style.Text>
+        </style.Description>
+      </style.Header>
     </ParallaxLayer>
   </Fragment>
 );

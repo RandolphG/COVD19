@@ -4,14 +4,16 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 
 import {
   INITIALIZE_LOADING,
+  CHECK_CACHED_DATA,
   initCountriesFailure,
   initCountriesSuccess,
   initFlagsSuccess,
   initFlagsFailure,
+  setCachedDataSuccess,
 } from '../../actions';
 import { api } from '../../services';
 
-export const initializeLoadingEpic = action$ =>
+export const initializeCountriesEpic = action$ =>
   action$.pipe(
     ofType(INITIALIZE_LOADING),
     switchMap(() =>
@@ -33,4 +35,21 @@ export const initializeFlagsEpic = action$ =>
     )
   );
 
-export default { initializeLoadingEpic, initializeFlagsEpic };
+export const checkCachedDataEpic = action$ =>
+  action$.pipe(
+    ofType(CHECK_CACHED_DATA),
+    switchMap(() =>
+      from(api.fetchLocalStorage()).pipe(
+        map(data => {
+          // setCachedDataSuccess(data);
+        }),
+        catchError(error => of(initFlagsFailure(error)))
+      )
+    )
+  );
+
+export default {
+  initializeLoadingEpic: initializeCountriesEpic,
+  initializeFlagsEpic,
+  checkCachedDataEpic,
+};

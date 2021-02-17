@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const flagURL = `https://corona.lmao.ninja/v2/countries`;
 const baseURL = `https://api.covid19api.com/`;
 const summaryURL = `summary`;
@@ -87,6 +89,27 @@ export const api = {
       localStorage.setItem('raw-flag-data', JSON.stringify(flagData));
 
       return intersection;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  fetchLocalStorage: async () => {
+    try {
+      const cachedCountries = localStorage.getItem('countries');
+      const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
+      const cachedFlags = localStorage.getItem('flags');
+      const apiExpiration = localStorage.getItem('api-expiration');
+      const data = {
+        numberOfCountries: JSON.parse(cachedNumberOfCountries),
+        countries: JSON.parse(cachedCountries),
+        flags: JSON.parse(cachedFlags),
+        expiration: JSON.parse(apiExpiration),
+      };
+      if (cachedFlags && cachedCountries && cachedNumberOfCountries && apiExpiration) {
+        return data;
+      } else {
+        console.log(`nothing there`);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -3,7 +3,7 @@ import { Parallax } from 'react-spring/renderprops-addons';
 import { Page01, Page02 } from './sections';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { initializeLoading } from '../../../store';
+import { checkCachedData, initializeLoading } from '../../../store';
 import './style.css';
 
 const Landing = () => {
@@ -18,6 +18,7 @@ const Landing = () => {
   const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
   const cachedFlags = localStorage.getItem('flags');
   const apiExpiration = localStorage.getItem('api-expiration');
+
   const [flags, setFlags] = useState(cachedFlags && JSON.parse(cachedFlags));
   const [apiData, setApiData] = useState(cachedApiData && JSON.parse(cachedApiData));
   const [countriesData, setCountriesData] = useState(
@@ -33,7 +34,18 @@ const Landing = () => {
 
   /* data fetching */
   useEffect(() => {
-    dispatch(initializeLoading());
+    dispatch(checkCachedData());
+    if (
+      cachedFlags &&
+      cachedCountries &&
+      cachedApiData &&
+      cachedNumberOfCountries &&
+      apiExpiration
+    ) {
+      console.log(`Everything here`);
+    } else {
+      dispatch(initializeLoading());
+    }
   }, []);
 
   /* intro animation */

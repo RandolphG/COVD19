@@ -2,9 +2,13 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
 import thunk from 'redux-thunk';
+import { routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 
 import rootReducer from './reducers';
 import { rootEpic } from './root';
+
+export const history = createBrowserHistory();
 
 const logger = createLogger({
   collapsed: true,
@@ -14,11 +18,11 @@ const logger = createLogger({
 
 const epicMiddleware = createEpicMiddleware();
 
-const middleware = applyMiddleware(epicMiddleware, thunk, logger);
+const middleware = applyMiddleware(epicMiddleware, routerMiddleware(history), thunk, logger);
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, composeEnhancer(middleware));
+const store = createStore(rootReducer(history), composeEnhancer(middleware));
 
 epicMiddleware.run(rootEpic);
 

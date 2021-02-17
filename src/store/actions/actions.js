@@ -4,11 +4,15 @@ import {
   SET_OFFSET,
   TOGGLE_MODAL,
   INIT_COUNTRIES_SUCCESS,
-  INIT_NUMBER_OF_COUNTRIES,
+  INIT_NUMBER_OF_COUNTRIES_SUCCESS,
   INITIALIZE_LOADING,
   INIT_COUNTRIES_FAILURE,
   INIT_FLAGS_SUCCESS,
   INIT_FLAGS_FAILURE,
+  INIT_NUMBER_OF_COUNTRIES_FAILURE,
+  CHECK_CACHED_DATA,
+  SET_CACHED_DATA_SUCCESS,
+  SET_CACHED_DATA_FAILURE,
 } from './actionTypes';
 
 export const goNEXT = payload => ({ type: NEXT, payload });
@@ -37,4 +41,28 @@ export const initCountriesFailure = error => ({
   payload: { error },
 });
 
-export const initNumberOfCountries = payload => ({ type: INIT_NUMBER_OF_COUNTRIES, payload });
+/* initialize number of countries */
+export const initNumberOfCountriesSuccess = payload => ({
+  type: INIT_NUMBER_OF_COUNTRIES_SUCCESS,
+  payload,
+});
+
+export const initNumberOfCountriesFailure = payload => ({
+  type: INIT_NUMBER_OF_COUNTRIES_FAILURE,
+  payload,
+});
+
+/* cached data */
+export const checkCachedData = () => ({
+  type: CHECK_CACHED_DATA,
+});
+
+export const setCachedDataSuccess = payload => ({
+  type: SET_CACHED_DATA_SUCCESS,
+  payload,
+});
+
+export const setCachedDataFailure = error => ({
+  type: SET_CACHED_DATA_FAILURE,
+  payload: { error },
+});
