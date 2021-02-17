@@ -1,6 +1,9 @@
 # COVID-19 
 ![COVID-19 App](https://github.com/RandolphG/COVID19/blob/main/public/_covid.gif?raw=true)
 
+
+<a href="https://discord.gg/Xfa6xgr2Zf"><img src="https://img.shields.io/badge/discord-join-7289DA.svg" /></a>
+[![Twitter Follow](https://img.shields.io/twitter/follow/poplogics.svg?style=social)](https://twitter.com/poplogics)
 ## COVID-19 Dashboard [electron]
 
 ### Installation process :
@@ -26,18 +29,24 @@ $ npm run electron
 
 🔧 connected react router
 🔋 redux
+  💩  
 
-- reselect
-- framer-motion
+🧛 reselect
+🦝 framer-motion
 
 ### requirements 
--  api : https://documenter.getpostman.com/view/10808728/SzS8rjbc
+👍  api : https://documenter.getpostman.com/view/10808728/SzS8rjbc
+👍 list of COVID infected per country
+
+👍 table of the number of COVID infected by countries
+👍 extra features
+
+👍 redux store
+👍 ES6 code
+
 - graph of COVID infected for a particular country
-- list of COVID infected per country
-- table of the number of COVID infected by countries
 - filtering
 - sorting
 - searching
-- extra features
-- redux store
-- ES6 code
+
+
