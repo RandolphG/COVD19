@@ -27,8 +27,8 @@ const Views = () => {
   return (
     <ErrorBoundary>
       <Border key="role">
+        <Menu />
         <ConnectedRouter history={history}>
-          <Menu />
           <Options />
           <Route
             render={({ location }) => (

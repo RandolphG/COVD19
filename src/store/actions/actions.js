@@ -5,7 +5,7 @@ import {
   TOGGLE_MODAL,
   INIT_COUNTRIES_SUCCESS,
   INIT_NUMBER_OF_COUNTRIES_SUCCESS,
-  INITIALIZE_LOADING,
+  INITIALIZE_DATA,
   INIT_COUNTRIES_FAILURE,
   INIT_FLAGS_SUCCESS,
   INIT_FLAGS_FAILURE,
@@ -24,8 +24,8 @@ export const setOffset = payload => ({ type: SET_OFFSET, payload });
 export const toggleModal = payload => ({ type: TOGGLE_MODAL, payload });
 
 /* initialize loading */
-export const initializeLoading = () => ({
-  type: INITIALIZE_LOADING,
+export const initializeData = () => ({
+  type: INITIALIZE_DATA,
 });
 
 /* initialize flags*/

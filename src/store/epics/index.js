@@ -5,6 +5,6 @@ import {
   checkCachedDataEpic,
 } from './initializeDataEpic';
 
-const rootEpics = combineEpics(initializeCountriesEpic, initializeFlagsEpic);
+const rootEpics = combineEpics(initializeCountriesEpic, initializeFlagsEpic, checkCachedDataEpic);
 
 export default rootEpics;

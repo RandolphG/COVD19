@@ -31,8 +31,8 @@ const Menu = () => {
   const [selected, setSelected] = useState(0);
 
   const redirect = ({ path }) => dispatch => {
-    console.log(`path`, path);
-    dispatch(push(`/${path}`));
+    console.log(`push`, push(`/${path}`));
+    // dispatch(push(`/${path}`));
   };
 
   return (
@@ -46,7 +46,7 @@ const Menu = () => {
                 key={i}
                 className={`title ${i === selected && 'selected'}`}
                 style={{ color: i === selected ? color : '#333' }}
-                onClick={() => {
+                onClick={dispatch => {
                   redirect(path);
                   setSelected(i);
                 }}

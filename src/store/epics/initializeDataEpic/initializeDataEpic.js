@@ -1,21 +1,34 @@
 import { ofType } from 'redux-observable';
 import { from, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
-
 import {
-  INITIALIZE_LOADING,
+  INITIALIZE_DATA,
   CHECK_CACHED_DATA,
   initCountriesFailure,
   initCountriesSuccess,
   initFlagsSuccess,
   initFlagsFailure,
   setCachedDataSuccess,
+  setCachedDataFailure,
 } from '../../actions';
 import { api } from '../../services';
 
+export const checkCachedDataEpic = action$ =>
+  action$.pipe(
+    ofType(CHECK_CACHED_DATA),
+    switchMap(() =>
+      from(api.fetchLocalStorage()).pipe(
+        map(data => {
+          return setCachedDataSuccess(data);
+        }),
+        catchError(error => of(setCachedDataFailure(error)))
+      )
+    )
+  );
+
 export const initializeCountriesEpic = action$ =>
   action$.pipe(
-    ofType(INITIALIZE_LOADING),
+    ofType(INITIALIZE_DATA),
     switchMap(() =>
       from(api.fetchCountries()).pipe(
         map(data => initCountriesSuccess(data)),
@@ -26,7 +39,7 @@ export const initializeCountriesEpic = action$ =>
 
 export const initializeFlagsEpic = action$ =>
   action$.pipe(
-    ofType(INITIALIZE_LOADING),
+    ofType(INITIALIZE_DATA),
     switchMap(() =>
       from(api.fetchFlags()).pipe(
         map(data => initFlagsSuccess(data)),
@@ -35,21 +48,8 @@ export const initializeFlagsEpic = action$ =>
     )
   );
 
-export const checkCachedDataEpic = action$ =>
-  action$.pipe(
-    ofType(CHECK_CACHED_DATA),
-    switchMap(() =>
-      from(api.fetchLocalStorage()).pipe(
-        map(data => {
-          // setCachedDataSuccess(data);
-        }),
-        catchError(error => of(initFlagsFailure(error)))
-      )
-    )
-  );
-
 export default {
-  initializeLoadingEpic: initializeCountriesEpic,
+  initializeCountriesEpic,
   initializeFlagsEpic,
   checkCachedDataEpic,
 };

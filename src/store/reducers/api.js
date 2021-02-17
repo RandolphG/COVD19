@@ -7,7 +7,7 @@ import {
   NEXT,
   SET_OFFSET,
   PREV,
-  INITIALIZE_LOADING,
+  INITIALIZE_DATA,
   INIT_COUNTRIES_FAILURE,
   INIT_FLAGS_FAILURE,
   INIT_FLAGS_SUCCESS,
@@ -46,7 +46,7 @@ export const api = createReducer(initialState, {
     ...state,
     showModal: action.payload,
   }),
-  [INITIALIZE_LOADING]: state => ({
+  [INITIALIZE_DATA]: state => ({
     ...state,
     loading: true,
     error: null,

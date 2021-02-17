@@ -1,51 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Parallax } from 'react-spring/renderprops-addons';
 import { Page01, Page02 } from './sections';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { checkCachedData, initializeLoading } from '../../../store';
+import { checkCachedData, initializeData } from '../../../store';
 import './style.css';
 
 const Landing = () => {
   const dispatch = useDispatch();
   let parallax = useRef(null);
-  const history = useHistory();
 
-  //TODO use into its own useEffect (sideEffect)
-  /* cachedData */
-  const cachedApiData = localStorage.getItem('api-data');
-  const cachedCountries = localStorage.getItem('countries');
-  const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
-  const cachedFlags = localStorage.getItem('flags');
-  const apiExpiration = localStorage.getItem('api-expiration');
-
-  const [flags, setFlags] = useState(cachedFlags && JSON.parse(cachedFlags));
-  const [apiData, setApiData] = useState(cachedApiData && JSON.parse(cachedApiData));
-  const [countriesData, setCountriesData] = useState(
-    cachedCountries && JSON.parse(cachedCountries)
-  );
-  const [numberOfCountriesData, setNumberOfCountriesData] = useState(
-    cachedNumberOfCountries && JSON.parse(cachedNumberOfCountries)
-  );
-
-  const onLoad = () => {
-    history.push('/CAROUSEL');
-  };
-
-  /* data fetching */
   useEffect(() => {
     dispatch(checkCachedData());
-    if (
-      cachedFlags &&
-      cachedCountries &&
-      cachedApiData &&
-      cachedNumberOfCountries &&
-      apiExpiration
-    ) {
-      console.log(`Everything here`);
-    } else {
-      dispatch(initializeLoading());
-    }
+    // dispatch(initializeData());
   }, []);
 
   /* intro animation */

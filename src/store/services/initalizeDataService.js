@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const flagURL = `https://corona.lmao.ninja/v2/countries`;
 const baseURL = `https://api.covid19api.com/`;
 const summaryURL = `summary`;
@@ -13,8 +11,6 @@ const countryCodes = [];
  * @param ttl
  */
 const setLocalData = (data, ttl) => {
-  localStorage.setItem('date', JSON.stringify(data.Date));
-  localStorage.setItem('api-data', JSON.stringify(data));
   localStorage.setItem('countries', JSON.stringify(data.Countries));
   localStorage.setItem('number-of-countries', JSON.stringify(data.Countries.length));
   localStorage.setItem('api-expiration', (Date.now() + ttl).toString());
@@ -84,9 +80,7 @@ export const api = {
         })
         .filter(item => item !== undefined);
 
-      localStorage.setItem('filtered-flags', JSON.stringify(intersection));
       localStorage.setItem('flags', JSON.stringify(flags));
-      localStorage.setItem('raw-flag-data', JSON.stringify(flagData));
 
       return intersection;
     } catch (error) {
@@ -95,18 +89,18 @@ export const api = {
   },
   fetchLocalStorage: async () => {
     try {
-      const cachedCountries = localStorage.getItem('countries');
-      const cachedNumberOfCountries = localStorage.getItem('number-of-countries');
-      const cachedFlags = localStorage.getItem('flags');
-      const apiExpiration = localStorage.getItem('api-expiration');
-      const data = {
-        numberOfCountries: JSON.parse(cachedNumberOfCountries),
-        countries: JSON.parse(cachedCountries),
-        flags: JSON.parse(cachedFlags),
-        expiration: JSON.parse(apiExpiration),
-      };
+      const cachedCountries = await localStorage.getItem('countries');
+      const cachedNumberOfCountries = await localStorage.getItem('number-of-countries');
+      const cachedFlags = await localStorage.getItem('flags');
+      const apiExpiration = await localStorage.getItem('api-expiration');
+
       if (cachedFlags && cachedCountries && cachedNumberOfCountries && apiExpiration) {
-        return data;
+        return {
+          numberOfCountries: JSON.parse(cachedNumberOfCountries),
+          countries: JSON.parse(cachedCountries),
+          flags: JSON.parse(cachedFlags),
+          expiration: JSON.parse(apiExpiration),
+        };
       } else {
         console.log(`nothing there`);
       }
