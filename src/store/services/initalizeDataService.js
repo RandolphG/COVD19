@@ -96,10 +96,10 @@ export const api = {
 
       if (cachedFlags && cachedCountries && cachedNumberOfCountries && apiExpiration) {
         return {
-          numberOfCountries: JSON.parse(cachedNumberOfCountries),
           countries: JSON.parse(cachedCountries),
           flags: JSON.parse(cachedFlags),
           expiration: JSON.parse(apiExpiration),
+          numberOfCountries: JSON.parse(cachedNumberOfCountries),
         };
       } else {
         console.log(`nothing there`);

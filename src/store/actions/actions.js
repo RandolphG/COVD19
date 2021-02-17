@@ -57,9 +57,12 @@ export const checkCachedData = () => ({
   type: CHECK_CACHED_DATA,
 });
 
-export const setCachedDataSuccess = payload => ({
+export const setCachedDataSuccess = (numberOfCountries, countries, flags, expiration) => ({
   type: SET_CACHED_DATA_SUCCESS,
-  payload,
+  numberOfCountries,
+  countries,
+  flags,
+  expiration,
 });
 
 export const setCachedDataFailure = error => ({

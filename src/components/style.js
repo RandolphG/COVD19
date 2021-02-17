@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
   height: 100vh;
@@ -8,7 +8,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 1rem;
   background: #080e1e;
   background: radial-gradient(
     circle,

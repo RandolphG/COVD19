@@ -47,6 +47,8 @@ const Menu = () => {
                 className={`title ${i === selected && 'selected'}`}
                 style={{ color: i === selected ? color : '#333' }}
                 onClick={dispatch => {
+                  console.log(`push`, push(`/${path}`));
+
                   redirect(path);
                   setSelected(i);
                 }}

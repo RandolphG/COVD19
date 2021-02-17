@@ -10,11 +10,13 @@ const initialState = {
 };
 
 export const cachedApi = createReducer(initialState, {
-  [SET_CACHED_DATA_SUCCESS]: (state, action) => ({
-    ...state,
-    cachedFlags: action.cachedFlags,
-    cachedCountries: action.countries,
-    cachedNumberOfCountries: action.numberOfCountries,
-    apiExpiration: action.expiration,
-  }),
+  [SET_CACHED_DATA_SUCCESS]: (state, { numberOfCountries, countries, flags, expiration }) => {
+    return {
+      ...state,
+      cachedCountries: countries,
+      cachedFlags: flags,
+      apiExpiration: expiration,
+      cachedNumberOfCountries: numberOfCountries,
+    };
+  },
 });

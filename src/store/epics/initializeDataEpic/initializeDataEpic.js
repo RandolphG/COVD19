@@ -18,8 +18,8 @@ export const checkCachedDataEpic = action$ =>
     ofType(CHECK_CACHED_DATA),
     switchMap(() =>
       from(api.fetchLocalStorage()).pipe(
-        map(data => {
-          return setCachedDataSuccess(data);
+        map(({ numberOfCountries, countries, flags, expiration }) => {
+          return setCachedDataSuccess(numberOfCountries, countries, flags, expiration);
         }),
         catchError(error => of(setCachedDataFailure(error)))
       )
