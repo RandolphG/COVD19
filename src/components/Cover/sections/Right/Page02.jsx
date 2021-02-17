@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { ParallaxLayer } from 'react-spring/renderprops-addons';
 import style from './style';
+import { ErrorBoundary } from '../../../ErrorBoundary';
 
 /**
  * intro page #02
@@ -12,7 +13,7 @@ import style from './style';
  * @constructor
  */
 const Page02 = ({ offset, caption, first, second }) => (
-  <Fragment>
+  <ErrorBoundary>
     <ParallaxLayer offset={offset} speed={0.2}>
       <style.SlopeBegin />
     </ParallaxLayer>
@@ -39,7 +40,7 @@ const Page02 = ({ offset, caption, first, second }) => (
         </style.Description>
       </style.Header>
     </ParallaxLayer>
-  </Fragment>
+  </ErrorBoundary>
 );
 
 export default Page02;

@@ -4,19 +4,18 @@ import { createEpicMiddleware } from 'redux-observable';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
-
 import rootReducer from './reducers';
-import { rootEpic } from './root';
+import { root } from './rootEpic';
 
 export const history = createBrowserHistory();
+
+const epicMiddleware = createEpicMiddleware();
 
 const logger = createLogger({
   collapsed: true,
   level: 'info',
-  predicate: () => process.env.NODE_ENV === 'development', // eslint-disable-line no-unused-vars
+  predicate: () => process.env.NODE_ENV === 'development',
 });
-
-const epicMiddleware = createEpicMiddleware();
 
 const middleware = applyMiddleware(epicMiddleware, routerMiddleware(history), thunk, logger);
 
@@ -24,6 +23,6 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(rootReducer(history), composeEnhancer(middleware));
 
-epicMiddleware.run(rootEpic);
+epicMiddleware.run(root);
 
 export default store;

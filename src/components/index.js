@@ -1,21 +1,8 @@
-import React from 'react';
-import { ErrorBoundary } from './ErrorBoundary';
-import s from './style';
-import Views from './Views';
-
-/**
- * covid data app
- * @returns {JSX.Element}
- * @constructor
- */
-const Covid19 = () => {
-  return (
-    <ErrorBoundary>
-      <s.Container>
-        <Views />
-      </s.Container>
-    </ErrorBoundary>
-  );
-};
-
-export default Covid19;
+export { Modal } from './Modal';
+export * from './Carousel';
+export * from './Menu';
+export * from './Scroll';
+export * from './Loader';
+export * from './Background';
+export * from './Cover';
+export { ErrorBoundary } from './ErrorBoundary';

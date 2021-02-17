@@ -1,17 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import { Parallax } from 'react-spring/renderprops-addons';
-import { Page01, Page02 } from './sections';
+import { Left, Right } from './sections';
 import { useDispatch } from 'react-redux';
-import { checkCachedData, initializeData } from '../../../store';
+import { checkCachedData, initializeData } from '../../store';
+import { ErrorBoundary } from '../ErrorBoundary';
 import './style.css';
 
-const Landing = () => {
+const Cover = () => {
   const dispatch = useDispatch();
   let parallax = useRef(null);
 
   useEffect(() => {
+    dispatch(initializeData());
     dispatch(checkCachedData());
-    // dispatch(initializeData());
   }, []);
 
   /* intro animation */
@@ -23,7 +24,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <>
+    <ErrorBoundary>
       <Parallax
         className="container"
         ref={ref => (parallax = ref)}
@@ -31,17 +32,17 @@ const Landing = () => {
         horizontal
         scrolling={false}
       >
-        <Page01
+        <Left
           offset={0}
           gradient="pink"
           caption="Covid 19"
           first="electron"
           second="framer-motion"
         />
-        <Page02 offset={1} caption="second stats" first="table & list" second="framer motion" />
+        <Right offset={1} caption="second stats" first="table & list" second="framer motion" />
       </Parallax>
-    </>
+    </ErrorBoundary>
   );
 };
 
-export default Landing;
+export default Cover;

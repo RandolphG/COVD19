@@ -1,4 +1,4 @@
-import { getNumberOfCountries, getSlideIndex, goNEXT, goPREV } from '../../../../store';
+import { getNumberOfCountries, getSlideIndex, goNEXT, goPREV } from '../../../store';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 

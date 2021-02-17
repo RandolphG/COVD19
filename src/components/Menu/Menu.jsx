@@ -5,7 +5,6 @@ import { ErrorBoundary } from '../ErrorBoundary';
 import './style.css';
 import style from './style';
 import { push } from 'connected-react-router';
-import { useDispatch } from 'react-redux';
 
 /* menu items */
 const views = [
@@ -27,12 +26,11 @@ const views = [
  * @constructor
  */
 const Menu = () => {
-  const dispatch = useDispatch();
   const [selected, setSelected] = useState(0);
 
   const redirect = ({ path }) => dispatch => {
     console.log(`push`, push(`/${path}`));
-    // dispatch(push(`/${path}`));
+    dispatch(push(`/${path}`));
   };
 
   return (
@@ -70,4 +68,5 @@ const Menu = () => {
     </ErrorBoundary>
   );
 };
+
 export default Menu;

@@ -1,4 +1,4 @@
-export { default as store } from './store';
+export { default } from './store';
 export * from './reducers';
 export * from './epics';
 export * from './actions';

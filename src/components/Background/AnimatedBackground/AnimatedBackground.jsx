@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import { ErrorBoundary } from '../../ErrorBoundary';
 
 /**
  * Background wave motion
@@ -8,10 +9,9 @@ import './style.css';
  */
 const AnimatedBackground = () => {
   return (
-    <>
+    <ErrorBoundary>
       <div className="header">
         <div className="inner-header flex" />
-
         <div>
           <svg
             className="waves"
@@ -36,7 +36,7 @@ const AnimatedBackground = () => {
           </svg>
         </div>
       </div>
-    </>
+    </ErrorBoundary>
   );
 };
 

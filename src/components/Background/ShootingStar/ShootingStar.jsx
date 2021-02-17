@@ -1,9 +1,10 @@
 import React from 'react';
 import './style.css';
+import { ErrorBoundary } from '../../ErrorBoundary';
 
 const ShootingStar = () => {
   return (
-    <div>
+    <ErrorBoundary>
       <div className="night">
         <div className="shooting_star">C</div>
         <div className="shooting_star">O</div>
@@ -26,7 +27,7 @@ const ShootingStar = () => {
         <div className="shooting_star" />
         <div className="shooting_star" />
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };
 

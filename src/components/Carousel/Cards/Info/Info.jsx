@@ -2,7 +2,8 @@ import React from 'react';
 import './style.css';
 import style from './style';
 import { useSelector } from 'react-redux';
-import { getFlags } from '../../../../../store';
+import { getFlags } from '../../../../store';
+import { ErrorBoundary } from '../../../ErrorBoundary';
 /**
  * information
  * @param currentIndex
@@ -18,7 +19,7 @@ const Info = ({ currentIndex, country, deaths, confirmed, recovered, toggle }) =
   const currentFlag = flags && flags[currentIndex] && flags[currentIndex].flag;
 
   return (
-    <div>
+    <ErrorBoundary>
       <style.Card>
         <style.Header url={currentFlag}>
           <style.Title>{country}</style.Title>
@@ -39,7 +40,7 @@ const Info = ({ currentIndex, country, deaths, confirmed, recovered, toggle }) =
           </style.Details>
         </style.Content>
       </style.Card>
-    </div>
+    </ErrorBoundary>
   );
 };
 

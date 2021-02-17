@@ -18,12 +18,15 @@ $ npm i
 $ npm run electron 
 ```
 ### Features
-- COVID 19 Api : https://covid19api.com/ 
-- CDN of Country Flags : https://flags.fmcdn.net/
-- Styled Components & Custom css
-- electron
-- connected react router
-- redux
+💪 COVID 19 Api : https://covid19api.com/
+💎  CDN of Country Flags : https://flags.fmcdn.net/
+
+🕘  Styled Components & Custom css
+☀️ electron
+
+🔧 connected react router
+🔋 redux
+
 - reselect
 - framer-motion
 

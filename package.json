@@ -24,7 +24,7 @@
     "framer": "^1.2.12",
     "framer-motion": "^3.1.1",
     "fs": "0.0.1-security",
-    "history": "^5.0.0",
+    "history": "4.10.1",
     "jquery": "^3.5.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

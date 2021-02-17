@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useSelector } from 'react-redux';
-import { getCountries, getFlags } from '../../../store';
-import { ErrorBoundary } from '../../ErrorBoundary';
+import { getCountries, getFlags } from '../../store';
+import { ErrorBoundary } from '../ErrorBoundary';
 import style from './style';
 
 const height = 45;

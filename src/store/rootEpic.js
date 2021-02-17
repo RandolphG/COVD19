@@ -15,4 +15,4 @@ const protectAndCombineEpics = (...epics) => {
   return combineEpics(...protectedEpics);
 };
 
-export const rootEpic = protectAndCombineEpics(rootEpics);
+export const root = protectAndCombineEpics(rootEpics);

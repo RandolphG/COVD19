@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isModalShown } from '../../store';
 import { toggleModal } from '../../store';
 import { Flag } from './Flag';
+import { ErrorBoundary } from '../ErrorBoundary';
 
 const backdrop = {
   visible: { opacity: 1 },
@@ -78,21 +79,23 @@ const Modal = () => {
   const toggle = () => dispatch(toggleModal(!isModalHidden));
 
   return (
-    <AnimatePresence>
-      {isModalHidden && (
-        <BackdropCSS
-          variants={backdrop}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          onClick={toggle}
-        >
-          <ModalCSS variants={modal}>
-            <Flag />
-          </ModalCSS>
-        </BackdropCSS>
-      )}
-    </AnimatePresence>
+    <ErrorBoundary>
+      <AnimatePresence>
+        {isModalHidden && (
+          <BackdropCSS
+            variants={backdrop}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            onClick={toggle}
+          >
+            <ModalCSS variants={modal}>
+              <Flag />
+            </ModalCSS>
+          </BackdropCSS>
+        )}
+      </AnimatePresence>
+    </ErrorBoundary>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { ErrorBoundary } from '../../ErrorBoundary';
+import { ErrorBoundary } from '../ErrorBoundary';
 import { useSelector } from 'react-redux';
-import { getCountries } from '../../../store';
+import { getCountries } from '../../store';
 import style from './style';
 import { Cards } from './Cards';
 import { NextBtn, PrevBtn } from './NavigationButtons';
