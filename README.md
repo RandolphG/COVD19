@@ -22,11 +22,13 @@ $ npm run electron
 ```
 ### Features
 💪 COVID 19 Api : https://covid19api.com/
+
 💪 API : https://documenter.getpostman.com/view/10808728/SzS8rjbc
 
 💎 CDN of Country Flags : https://flags.fmcdn.net/
 
 🕘 Styled Components & Custom css
+
 ☀️ electron
 
 🔧 connected react router
