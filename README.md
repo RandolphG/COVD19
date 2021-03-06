@@ -22,31 +22,16 @@ $ npm run electron
 ```
 ### Features
 💪 COVID 19 Api : https://covid19api.com/
-💎  CDN of Country Flags : https://flags.fmcdn.net/
+💪 API : https://documenter.getpostman.com/view/10808728/SzS8rjbc
+💎 CDN of Country Flags : https://flags.fmcdn.net/
 
-🕘  Styled Components & Custom css
+🕘 Styled Components & Custom css
 ☀️ electron
 
 🔧 connected react router
-🔋 redux
-  💩  
+🔋  redux  
 
 🧛 reselect
 🦝 framer-motion
-
-### requirements 
-👍  api : https://documenter.getpostman.com/view/10808728/SzS8rjbc
-👍 list of COVID infected per country
-
-👍 table of the number of COVID infected by countries
-👍 extra features
-
-👍 redux store
-👍 ES6 code
-
-- graph of COVID infected for a particular country
-- filtering
-- sorting
-- searching
 
 
